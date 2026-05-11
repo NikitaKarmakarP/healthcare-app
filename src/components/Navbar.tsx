@@ -38,6 +38,8 @@ const Navbar = () => {
       subLinks: [
         { name: 'Pediatricians', path: '/childrens-health?tab=doctors' },
         { name: 'Vaccination Tracker', path: '/childrens-health?tab=vaccination' },
+        { name: 'Growth Tracker', path: '/childrens-health?tab=growth' },
+        { name: 'Nutrition Guide', path: '/childrens-health?tab=nutrition' },
         { name: 'Baby Care Store', path: '/childrens-health?tab=store' }
       ]
     },
