@@ -332,40 +332,64 @@ const Home = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-50 to-transparent rounded-full blur-[80px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-purple-50 to-transparent rounded-full blur-[80px] pointer-events-none"></div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3 block">Simple Process</span>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">How MediSaathi Works</h2>
-            <p className="text-lg text-gray-500 font-medium leading-relaxed">Get the care you need in four simple steps, designed for your convenience.</p>
+          <div className="text-center max-w-3xl mx-auto mb-24">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-600 mr-2 animate-pulse"></span>
+              Simple Process
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 tracking-tight">
+              How <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">MediSaathi</span> Works
+            </h2>
+            <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">Get the care you need in four simple steps, designed for your complete convenience.</p>
           </div>
           
           <div className="grid md:grid-cols-4 gap-8 relative">
-            {/* Connecting Line */}
-            <div className="hidden md:block absolute top-10 left-0 w-full h-0.5 bg-gradient-to-r from-blue-100 via-blue-200 to-blue-100 z-0"></div>
+            {/* Animated Connecting Line */}
+            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] w-[80%] mx-auto h-1 bg-gray-100 rounded-full z-0 overflow-hidden">
+              <motion.div 
+                initial={{ x: "-100%" }}
+                whileInView={{ x: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 2.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 1 }}
+                className="w-full h-full bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+              />
+            </div>
             
             {[
-              { step: "01", title: "Check Symptoms", desc: "Use our AI to instantly analyze your symptoms.", icon: <Bot className="w-6 h-6" /> },
-              { step: "02", title: "Find Specialist", desc: "Get matched with the perfect verified doctor.", icon: <Search className="w-6 h-6" /> },
-              { step: "03", title: "Book Consult", desc: "Schedule an online video or clinic visit.", icon: <Video className="w-6 h-6" /> },
-              { step: "04", title: "Get Medication", desc: "Prescriptions delivered right to your door.", icon: <Pill className="w-6 h-6" /> }
+              { step: "01", title: "Check Symptoms", desc: "Use our AI to instantly analyze your symptoms.", icon: <Bot className="w-7 h-7" />, color: "from-blue-400 to-blue-600", shadow: "shadow-blue-500/30" },
+              { step: "02", title: "Find Specialist", desc: "Get matched with the perfect verified doctor.", icon: <Search className="w-7 h-7" />, color: "from-purple-400 to-purple-600", shadow: "shadow-purple-500/30" },
+              { step: "03", title: "Book Consult", desc: "Schedule an online video or clinic visit.", icon: <Video className="w-7 h-7" />, color: "from-emerald-400 to-emerald-600", shadow: "shadow-emerald-500/30" },
+              { step: "04", title: "Get Medication", desc: "Prescriptions delivered right to your door.", icon: <Pill className="w-7 h-7" />, color: "from-orange-400 to-orange-600", shadow: "shadow-orange-500/30" }
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative z-10 text-center group"
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                className="relative z-10 group"
               >
-                <div className="w-20 h-20 mx-auto bg-white border-4 border-gray-50 group-hover:border-blue-100 rounded-full flex items-center justify-center text-blue-600 shadow-xl mb-8 relative transition-colors">
-                  {item.icon}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm border-4 border-gray-50 shadow-sm">
-                    {item.step}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 transform group-hover:-translate-y-2 flex flex-col items-center text-center h-full relative overflow-hidden">
+                  
+                  {/* Hover Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  <div className={`w-24 h-24 mx-auto bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center text-white shadow-xl ${item.shadow} mb-8 relative transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 z-10`}>
+                    {item.icon}
+                    <div className="absolute -top-3 -right-3 w-10 h-10 bg-white text-gray-900 rounded-xl flex items-center justify-center font-black text-sm border-2 border-gray-100 shadow-md">
+                      {item.step}
+                    </div>
                   </div>
+                  
+                  <h3 className="text-xl font-black text-gray-900 mb-4 tracking-tight z-10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-gray-900 group-hover:to-gray-600 transition-all">{item.title}</h3>
+                  <p className="text-gray-500 font-medium leading-relaxed z-10">{item.desc}</p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-500 font-medium">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -378,17 +402,22 @@ const Home = () => {
         <div className="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/clean-textile.png')] opacity-[0.03] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 space-y-4 md:space-y-0">
-            <div>
-              <span className="text-blue-600 font-black tracking-widest uppercase text-xs mb-3 block">Expert Care</span>
-              <h2 className="text-4xl font-black text-gray-900 mb-2 tracking-tight">Top Rated Specialists</h2>
-              <p className="text-gray-500 font-medium text-lg">Book appointments with India's most trusted doctors.</p>
+          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 space-y-6 md:space-y-0">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold text-xs uppercase tracking-widest mb-4 shadow-sm">
+                <span className="flex h-2 w-2 rounded-full bg-emerald-600 mr-2 animate-pulse"></span>
+                Expert Care
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                Top Rated <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">Specialists</span>
+              </h2>
+              <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">Book appointments with India's most trusted, verified medical professionals.</p>
             </div>
             <button 
               onClick={() => navigate('/doctors')}
-              className="inline-flex items-center text-blue-600 font-bold hover:text-blue-700 transition-colors group bg-blue-50 px-5 py-2.5 rounded-full"
+              className="inline-flex items-center bg-gray-900 hover:bg-emerald-600 text-white px-6 py-3.5 rounded-xl font-bold transition-all shadow-md hover:shadow-emerald-500/30 group transform hover:-translate-y-1"
             >
-              View All Doctors <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+              View All Doctors <ChevronRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
           
@@ -432,10 +461,15 @@ const Home = () => {
       {/* Testimonials */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3 block">Patient Stories</span>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">Loved by Thousands</h2>
-            <p className="text-lg text-gray-500 font-medium leading-relaxed">Don't just take our word for it. Here is what our users have to say about their MediSaathi experience.</p>
+          <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col items-center">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-yellow-50 border border-yellow-100 text-yellow-600 font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">
+              <Star className="w-4 h-4 mr-2 fill-current" />
+              Patient Stories
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 tracking-tight">
+              Loved by <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-500">Thousands</span>
+            </h2>
+            <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">Don't just take our word for it. Here is what our users have to say about their MediSaathi experience.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -474,9 +508,15 @@ const Home = () => {
       {/* FAQ Section */}
       <section className="py-24 bg-gray-50 border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight">Frequently Asked Questions</h2>
-            <p className="text-gray-500 font-medium">Everything you need to know about the platform.</p>
+          <div className="text-center mb-16 flex flex-col items-center">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">
+              <span className="flex h-2 w-2 rounded-full bg-indigo-600 mr-2 animate-pulse"></span>
+              Support & Help
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+              Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Questions</span>
+            </h2>
+            <p className="text-lg text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">Everything you need to know about the platform, our verified doctors, and how we securely manage your health data.</p>
           </div>
           
           <div className="space-y-4">
