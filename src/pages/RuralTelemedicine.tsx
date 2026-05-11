@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { WifiHigh, Users, Smartphone, HeartHandshake, ArrowRight, Languages } from 'lucide-react';
+import { Wifi, Users, Smartphone, HeartHandshake, ArrowRight, Languages } from 'lucide-react';
 
 const RuralTelemedicine = () => {
   return (
@@ -26,7 +26,7 @@ const RuralTelemedicine = () => {
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
             <div className="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
-              <WifiHigh className="w-7 h-7 text-amber-600" />
+              <Wifi className="w-7 h-7 text-amber-600" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Low Bandwidth Ready</h3>
             <p className="text-gray-600">Optimized video streaming that works flawlessly even on standard 3G/4G rural networks.</p>
