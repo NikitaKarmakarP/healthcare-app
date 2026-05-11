@@ -34,6 +34,26 @@ const Footer = () => {
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
+            
+            <div className="pt-4">
+              <p className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Get the App</p>
+              <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
+                <a href="#" className="transition-transform hover:scale-105 inline-block">
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                    alt="Get it on Google Play" 
+                    className="h-12"
+                  />
+                </a>
+                <a href="#" className="transition-transform hover:scale-105 inline-block">
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
+                    alt="Download on the App Store" 
+                    className="h-12"
+                  />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}
