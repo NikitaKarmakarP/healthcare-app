@@ -7,7 +7,7 @@ const Emergency = () => {
   const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setTimeout>;
     if (sosActive && countdown > 0) {
       timer = setTimeout(() => setCountdown(c => c - 1), 1000);
     }
