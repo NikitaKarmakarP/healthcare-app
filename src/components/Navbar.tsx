@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { HeartPulse, Menu, X, Phone, User, Settings, LogOut, ChevronDown, LayoutDashboard, Stethoscope, Building2, Pill, Sparkles, Baby, ShieldCheck } from 'lucide-react';
+import { HeartPulse, Menu, X, Phone, User, Settings, LogOut, ChevronDown, LayoutDashboard, Stethoscope, Building2, Pill, Sparkles, Baby, ShieldCheck, Droplet } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoginModal from './LoginModal';
 
@@ -43,6 +43,7 @@ const Navbar = () => {
         { name: 'Find Doctors', path: '/doctors', desc: 'Book expert consultations', icon: Stethoscope, color: 'text-blue-500', bg: 'bg-blue-50' },
         { name: 'Hospitals', path: '/hospitals', desc: 'Find nearby medical centers', icon: Building2, color: 'text-emerald-500', bg: 'bg-emerald-50' },
         { name: 'Pharmacy', path: '/pharmacy', desc: 'Order medicines online', icon: Pill, color: 'text-purple-500', bg: 'bg-purple-50' },
+        { name: 'Blood Bank', path: '/blood-bank', desc: 'Find and donate blood', icon: Droplet, color: 'text-red-500', bg: 'bg-red-50' },
       ]
     },
     { 

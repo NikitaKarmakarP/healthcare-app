@@ -196,18 +196,23 @@ const Home = () => {
       {/* Services Grid (Enterprise Professional Layout) */}
       <section className="relative py-24 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 flex flex-col md:flex-row md:justify-between md:items-end border-b border-gray-100 pb-8">
+          <div className="mb-16 flex flex-col md:flex-row md:justify-between md:items-end border-b border-gray-100 pb-8 space-y-6 md:space-y-0">
             <div className="max-w-2xl">
-              <span className="text-blue-600 font-bold tracking-widest uppercase text-xs mb-3 block">Platform Capabilities</span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Our Ecosystem</h2>
-              <p className="text-lg text-gray-500 font-medium leading-relaxed">Enterprise-grade tools beautifully integrated to manage every aspect of healthcare delivery.</p>
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 shadow-sm">
+                <span className="flex h-2 w-2 rounded-full bg-blue-600 mr-2 animate-pulse"></span>
+                Platform Capabilities
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
+                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Ecosystem</span>
+              </h2>
+              <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">Enterprise-grade tools beautifully integrated to manage every aspect of healthcare delivery.</p>
             </div>
             <button 
               onClick={() => navigate('/services')}
-              className="mt-6 md:mt-0 text-blue-600 font-bold hover:text-blue-800 flex items-center transition-colors group"
+              className="inline-flex items-center bg-gray-900 hover:bg-blue-600 text-white px-6 py-3.5 rounded-xl font-bold transition-all shadow-md hover:shadow-blue-500/30 group transform hover:-translate-y-1"
             >
               Explore all capabilities 
-              <ChevronRight className="w-5 h-5 ml-1 transform group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
           

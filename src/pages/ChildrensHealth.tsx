@@ -134,7 +134,7 @@ const ChildrensHealth = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="space-y-8 mt-6"
+              className="space-y-8 mt-16"
             >
               <div className="flex justify-between items-end mb-4 px-2">
                 <h2 className="text-2xl font-black text-gray-900">Top Pediatricians</h2>
