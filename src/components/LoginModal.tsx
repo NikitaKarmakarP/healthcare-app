@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Smartphone, Loader2, Mail, Lock, ShieldCheck, HeartPulse, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { X, Smartphone, Loader2, Mail, Lock, ShieldCheck, HeartPulse, ArrowRight, CheckCircle2, User } from 'lucide-react';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -9,11 +9,20 @@ interface LoginModalProps {
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess }) => {
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [isAppleDevice, setIsAppleDevice] = useState(false);
   const [loadingProvider, setLoadingProvider] = useState<string | null>(null);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (provider: string, e?: React.FormEvent) => {
+  React.useEffect(() => {
+    // Only show Apple login on Apple devices
+    const isApple = /Mac|iPod|iPhone|iPad/.test(navigator.userAgent);
+    setIsAppleDevice(isApple);
+  }, []);
+
+  const handleAuth = (provider: string, e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setLoadingProvider(provider);
     
@@ -87,31 +96,35 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
                     <ShieldCheck className="w-6 h-6 text-green-400" />
                   </div>
                   <div>
-                    <p className="text-xs text-blue-200 font-bold uppercase tracking-wider">Secure Login</p>
-                    <p className="text-sm font-bold text-white">Verified Platform</p>
+                    <p className="text-xs text-blue-200 font-bold uppercase tracking-wider">Secure Platform</p>
+                    <p className="text-sm font-bold text-white">Verified Environment</p>
                   </div>
                 </div>
               </div>
 
-              {/* Right Side - Login Form */}
-              <div className="w-full md:w-7/12 p-8 md:p-12 relative bg-white">
+              {/* Right Side - Auth Form */}
+              <div className="w-full md:w-7/12 p-8 md:p-12 relative bg-white overflow-y-auto max-h-[90vh]">
                 <button 
                   onClick={onClose}
-                  className="absolute top-6 right-6 p-2 bg-gray-50 hover:bg-gray-100 rounded-full text-gray-400 hover:text-gray-900 transition-colors"
+                  className="absolute top-6 right-6 p-2 bg-gray-50 hover:bg-gray-100 rounded-full text-gray-400 hover:text-gray-900 transition-colors z-10"
                 >
                   <X className="w-5 h-5" />
                 </button>
 
                 <div className="max-w-md mx-auto">
                   <div className="mb-8 text-center md:text-left mt-4 md:mt-0">
-                    <h2 className="text-3xl font-black text-gray-900 mb-2">Welcome Back</h2>
-                    <p className="text-gray-500 font-medium">Please enter your details to sign in.</p>
+                    <h2 className="text-3xl font-black text-gray-900 mb-2">
+                      {isSignUp ? 'Create an Account' : 'Welcome Back'}
+                    </h2>
+                    <p className="text-gray-500 font-medium">
+                      {isSignUp ? 'Join thousands of patients taking control of their health.' : 'Please enter your details to sign in.'}
+                    </p>
                   </div>
 
-                  {/* Social Login Buttons */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
+                  {/* Social Auth Buttons */}
+                  <div className={`grid gap-4 mb-6 ${isAppleDevice ? 'grid-cols-2' : 'grid-cols-1'}`}>
                     <button 
-                      onClick={() => handleLogin('Google')}
+                      onClick={() => handleAuth('Google')}
                       disabled={loadingProvider !== null}
                       className="flex justify-center items-center py-3 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors font-bold text-gray-700 text-sm shadow-sm"
                     >
@@ -123,24 +136,27 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
                             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                           </svg>
-                          Google
+                          Continue with Google
                         </>
                       )}
                     </button>
-                    <button 
-                      onClick={() => handleLogin('Apple')}
-                      disabled={loadingProvider !== null}
-                      className="flex justify-center items-center py-3 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors font-bold text-gray-700 text-sm shadow-sm"
-                    >
-                      {loadingProvider === 'Apple' ? <Loader2 className="w-5 h-5 text-gray-500 animate-spin" /> : (
-                        <>
-                          <svg className="w-5 h-5 text-black mr-2" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.04 2.26-.74 3.58-.74 2.15.11 3.48 1.14 4.3 2.14-1.89 1.16-1.57 3.58.26 4.49-.62 1.83-1.63 3.65-3.22 5.28zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.31-1.95 4.35-3.74 4.25z"/>
-                          </svg>
-                          Apple
-                        </>
-                      )}
-                    </button>
+                    
+                    {isAppleDevice && (
+                      <button 
+                        onClick={() => handleAuth('Apple')}
+                        disabled={loadingProvider !== null}
+                        className="flex justify-center items-center py-3 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors font-bold text-gray-700 text-sm shadow-sm"
+                      >
+                        {loadingProvider === 'Apple' ? <Loader2 className="w-5 h-5 text-gray-500 animate-spin" /> : (
+                          <>
+                            <svg className="w-5 h-5 text-black mr-2" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.04 2.26-.74 3.58-.74 2.15.11 3.48 1.14 4.3 2.14-1.89 1.16-1.57 3.58.26 4.49-.62 1.83-1.63 3.65-3.22 5.28zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.31-1.95 4.35-3.74 4.25z"/>
+                            </svg>
+                            Continue with Apple
+                          </>
+                        )}
+                      </button>
+                    )}
                   </div>
 
                   {/* Divider */}
@@ -154,7 +170,35 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
                   </div>
 
                   {/* Email/Password Form */}
-                  <form onSubmit={(e) => handleLogin('Email', e)} className="space-y-5">
+                  <form onSubmit={(e) => handleAuth('Email', e)} className="space-y-4">
+                    
+                    {/* Only show Name field during Sign Up */}
+                    <AnimatePresence>
+                      {isSignUp && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <label className="block text-sm font-bold text-gray-700 mb-1.5">Full Name</label>
+                          <div className="relative mb-4">
+                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                              <User className="h-5 w-5 text-gray-400" />
+                            </div>
+                            <input
+                              type="text"
+                              required={isSignUp}
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              className="block w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors bg-gray-50/50 focus:bg-white"
+                              placeholder="John Doe"
+                            />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
                     <div>
                       <label className="block text-sm font-bold text-gray-700 mb-1.5">Email Address</label>
                       <div className="relative">
@@ -175,7 +219,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
                         <label className="block text-sm font-bold text-gray-700">Password</label>
-                        <a href="#" className="text-xs font-bold text-blue-600 hover:text-blue-500">Forgot password?</a>
+                        {!isSignUp && (
+                          <a href="#" className="text-xs font-bold text-blue-600 hover:text-blue-500">Forgot password?</a>
+                        )}
                       </div>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -201,26 +247,36 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
                         <Loader2 className="w-5 h-5 animate-spin" />
                       ) : (
                         <>
-                          Sign In <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                          {isSignUp ? 'Create Account' : 'Sign In'} <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                         </>
                       )}
                     </button>
                   </form>
 
-                  {/* Alternative OTP Login */}
-                  <div className="mt-6 text-center">
-                    <button 
-                      onClick={() => handleLogin('OTP')}
-                      disabled={loadingProvider !== null}
-                      className="inline-flex items-center text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors"
-                    >
-                      <Smartphone className="w-4 h-4 mr-2" />
-                      Login with Phone OTP instead
-                    </button>
-                  </div>
+                  {/* Alternative OTP Login (Only shown during sign in) */}
+                  {!isSignUp && (
+                    <div className="mt-6 text-center">
+                      <button 
+                        onClick={() => handleAuth('OTP')}
+                        disabled={loadingProvider !== null}
+                        className="inline-flex items-center text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors"
+                      >
+                        <Smartphone className="w-4 h-4 mr-2" />
+                        Login with Phone OTP instead
+                      </button>
+                    </div>
+                  )}
 
+                  {/* Toggle Sign Up / Sign In */}
                   <p className="text-center text-sm text-gray-500 mt-8 font-medium">
-                    Don't have an account? <a href="#" className="font-bold text-blue-600 hover:underline">Sign up for free</a>
+                    {isSignUp ? "Already have an account? " : "Don't have an account? "}
+                    <button 
+                      type="button"
+                      onClick={() => setIsSignUp(!isSignUp)} 
+                      className="font-bold text-blue-600 hover:underline"
+                    >
+                      {isSignUp ? "Sign in instead" : "Sign up for free"}
+                    </button>
                   </p>
                 </div>
               </div>
