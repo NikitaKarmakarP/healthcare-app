@@ -32,6 +32,15 @@ const Navbar = () => {
         { name: 'Pregnancy Tracker', path: '/womens-health?tab=pregnancy' }
       ]
     },
+    { 
+      name: 'Children\'s', 
+      path: '/childrens-health',
+      subLinks: [
+        { name: 'Pediatricians', path: '/childrens-health?tab=doctors' },
+        { name: 'Vaccination Tracker', path: '/childrens-health?tab=vaccination' },
+        { name: 'Baby Care Store', path: '/childrens-health?tab=store' }
+      ]
+    },
     { name: 'Admin', path: '/admin' },
   ];
 

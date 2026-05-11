@@ -20,6 +20,7 @@ import RuralTelemedicine from './pages/RuralTelemedicine';
 import AiReport from './pages/AiReport';
 import Plans from './pages/Plans';
 import Clinics from './pages/Clinics';
+import ChildrensHealth from './pages/ChildrensHealth';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             <Route path="/ai-report" element={<AiReport />} />
             <Route path="/plans" element={<Plans />} />
             <Route path="/clinics" element={<Clinics />} />
+            <Route path="/childrens-health" element={<ChildrensHealth />} />
           </Routes>
         </main>
         <Footer />
