@@ -9,7 +9,11 @@ import {
   Pill, 
   FileText, 
   ChevronRight,
-  Star
+  Star,
+  ShieldCheck,
+  Activity,
+  ArrowRight,
+  Heart
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -156,16 +160,63 @@ const Home = () => {
       </section>
 
       {/* Trusted By Brands */}
-      <section className="border-b border-gray-100 bg-white py-10 relative z-20">
+      <section className="border-b border-gray-100 bg-white py-12 relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Trusted by Top Hospitals & Clinics Across India</p>
-          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-            <h3 className="text-2xl font-black text-gray-900 tracking-tighter">Apollo<span className="text-blue-600">Care</span></h3>
-            <h3 className="text-2xl font-black text-gray-900 tracking-tighter">Fortis<span className="font-light">Health</span></h3>
-            <h3 className="text-2xl font-black text-gray-900 tracking-tighter">Max<span className="text-red-500 font-light">+</span></h3>
-            <h3 className="text-2xl font-black text-gray-900 tracking-tighter">Manipal<span className="text-blue-400">Hospitals</span></h3>
-            <h3 className="text-2xl font-black text-gray-900 tracking-tighter">AIIMS<span className="text-gray-500 text-sm">Network</span></h3>
-          </div>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-10"
+          >
+            Trusted by Top Hospitals & Clinics Across India
+          </motion.p>
+          
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2
+                }
+              }
+            }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-70 grayscale hover:grayscale-0 transition-all duration-700"
+          >
+            {[
+              { name: "Apollo", suffix: "Care", color: "text-blue-600" },
+              { name: "Fortis", suffix: "Health", color: "text-gray-900", suffixWeight: "font-light" },
+              { name: "Max", suffix: "+", color: "text-red-500", suffixWeight: "font-light" },
+              { name: "Manipal", suffix: "Hospitals", color: "text-blue-400" },
+              { name: "AIIMS", suffix: "Network", color: "text-gray-500", suffixSize: "text-sm" }
+            ].map((brand, idx) => (
+              <motion.div
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0 }
+                }}
+                animate={{ 
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  y: {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: idx * 0.5
+                  }
+                }}
+              >
+                <h3 className="text-2xl font-black text-gray-900 tracking-tighter hover:scale-110 transition-transform cursor-default">
+                  {brand.name}<span className={`${brand.color} ${brand.suffixWeight || ''} ${brand.suffixSize || ''}`}>{brand.suffix}</span>
+                </h3>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -257,77 +308,143 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-[#0B0F19] rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative"
+            className="bg-[#0B0F19] rounded-[4rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.4)] relative border border-white/5"
           >
-            {/* Dark Mode Background Gradients */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px]"></div>
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[100px]"></div>
+            {/* Dark Mode Background Gradients - More Vibrant */}
+            <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-600/30 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }}></div>
+            <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/30 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }}></div>
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.05]"></div>
             
             <div className="grid md:grid-cols-2 items-center relative z-10">
-              <div className="p-12 md:p-16 lg:p-20 text-white space-y-8">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-xs font-bold uppercase tracking-widest backdrop-blur-md">
-                  <Bot className="w-4 h-4 mr-2" />
-                  Next-Gen Feature
+              <div className="p-12 md:p-16 lg:p-24 text-white space-y-10">
+                <div className="inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/10 text-blue-300 text-xs font-black uppercase tracking-[0.2em] backdrop-blur-xl shadow-2xl">
+                  <Bot className="w-4 h-4 mr-2 text-blue-400" />
+                  Neural Health Intelligence
                 </div>
-                <h2 className="text-4xl md:text-5xl font-black leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-                  Meet Your AI<br/>Health Assistant
+                
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight">
+                  Meet Your <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 animate-gradient">
+                    AI Guardian
+                  </span>
                 </h2>
-                <p className="text-gray-400 text-lg leading-relaxed font-medium">
-                  Describe your symptoms naturally. Our AI analyzes millions of medical data points to suggest conditions, home remedies, and the exact specialist you need.
+                
+                <p className="text-gray-400 text-lg lg:text-xl leading-relaxed font-medium max-w-lg">
+                  Experience the future of diagnostics. Describe your symptoms naturally and let our advanced neural networks analyze millions of data points to guide your recovery.
                 </p>
-                <button 
-                  onClick={() => navigate('/ai-assistant')}
-                  className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] flex items-center group"
-                >
-                  <Bot className="w-5 h-5 mr-3 group-hover:animate-bounce" />
-                  Try AI Symptom Checker
-                </button>
-                <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">*Not a substitute for professional medical advice</p>
+                
+                <div className="flex flex-col sm:flex-row gap-5 pt-4">
+                  <button 
+                    onClick={() => navigate('/ai-assistant')}
+                    className="relative group bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-black transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] flex items-center justify-center overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    <Bot className="w-6 h-6 mr-3 relative z-10 group-hover:rotate-12 transition-transform" />
+                    <span className="relative z-10 text-lg">Start Diagnosis</span>
+                  </button>
+                  
+                  <div className="flex items-center space-x-4 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                    <div className="flex -space-x-3">
+                      {[1,2,3].map(i => (
+                        <div key={i} className="w-8 h-8 rounded-full border-2 border-[#0B0F19] bg-gray-800 flex items-center justify-center text-[10px] font-bold overflow-hidden">
+                          <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="User" />
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs font-bold text-gray-400">
+                      <span className="text-white">10k+</span> users active
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-6 pt-6 border-t border-white/5">
+                  <div className="flex items-center space-x-2">
+                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">HIPAA Compliant</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Activity className="w-4 h-4 text-blue-400" />
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Real-time Analysis</span>
+                  </div>
+                </div>
               </div>
               
-              <div className="hidden md:flex justify-center items-center h-full min-h-[500px] relative p-8">
-                 {/* Mock UI of Chatbot */}
+              <div className="hidden md:flex justify-center items-center h-full min-h-[600px] relative p-12 overflow-hidden">
+                 {/* Floating Decorative Icons */}
+                 <motion.div animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-20 right-20 bg-blue-500/10 p-4 rounded-2xl border border-white/10 backdrop-blur-md">
+                   <Activity className="w-6 h-6 text-blue-400" />
+                 </motion.div>
+                 <motion.div animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }} transition={{ duration: 6, repeat: Infinity, delay: 1 }} className="absolute bottom-20 left-20 bg-purple-500/10 p-4 rounded-2xl border border-white/10 backdrop-blur-md">
+                   <Heart className="w-6 h-6 text-purple-400" />
+                 </motion.div>
+
+                 {/* Mock UI of Chatbot - Enhanced */}
                  <motion.div 
-                   initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
-                   whileInView={{ opacity: 1, scale: 1, rotate: 2 }}
+                   initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                    viewport={{ once: true }}
-                   transition={{ duration: 0.8, delay: 0.2 }}
-                   className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] p-6 shadow-2xl w-full max-w-sm relative z-20"
+                   transition={{ duration: 1, type: "spring", bounce: 0.3 }}
+                   className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-[2.5rem] p-8 shadow-[0_40px_80px_rgba(0,0,0,0.5)] w-full max-w-md relative z-20 overflow-hidden"
                  >
-                    <div className="flex items-center space-x-3 mb-6 border-b border-white/10 pb-4">
-                      <div className="bg-blue-500 p-2.5 rounded-xl shadow-lg shadow-blue-500/30">
-                        <Bot className="text-white w-6 h-6" />
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></div>
+                    
+                    <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/5">
+                      <div className="flex items-center space-x-4">
+                        <div className="relative">
+                          <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg shadow-blue-500/30">
+                            <Bot className="text-white w-6 h-6" />
+                          </div>
+                          <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-4 border-[#1A1F2B] rounded-full"></span>
+                        </div>
+                        <div>
+                          <p className="font-black text-white text-xl tracking-tight">MediSaathi AI</p>
+                          <p className="text-[10px] text-blue-400 font-black uppercase tracking-widest">Neural Core v2.0</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-bold text-white text-lg">MediSaathi AI</p>
-                        <p className="text-xs text-green-400 font-bold flex items-center">
-                          <span className="w-2 h-2 rounded-full bg-green-400 mr-1.5 animate-pulse"></span>
-                          Online
-                        </p>
+                      <div className="flex space-x-2">
+                        <div className="w-2 h-2 rounded-full bg-white/10"></div>
+                        <div className="w-2 h-2 rounded-full bg-white/10"></div>
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                       <motion.div 
-                        initial={{ opacity: 0, x: 20 }}
+                        initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.6 }}
-                        className="bg-white/5 border border-white/10 rounded-2xl rounded-tr-sm p-4 text-sm text-gray-200 ml-auto w-5/6 shadow-sm"
+                        transition={{ delay: 1 }}
+                        className="bg-white/5 border border-white/10 rounded-2xl rounded-tr-sm p-5 text-sm text-gray-300 ml-auto w-5/6 shadow-sm font-medium leading-relaxed"
                       >
-                        I have a fever and a slight headache that started this morning.
+                        I've been feeling a sharp pain in my lower back since yesterday morning.
                       </motion.div>
                       
                       <motion.div 
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 1.2 }}
-                        className="bg-blue-600/20 border border-blue-500/30 rounded-2xl rounded-tl-sm p-4 text-sm text-blue-50 w-11/12 shadow-sm relative overflow-hidden"
+                        transition={{ delay: 1.8 }}
+                        className="bg-gradient-to-br from-blue-600/20 to-indigo-600/20 border border-blue-500/30 rounded-3xl rounded-tl-sm p-6 text-sm text-blue-50 w-full shadow-2xl relative overflow-hidden"
                       >
-                        <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-                        Based on your symptoms, it could be a mild viral infection. Please ensure you stay hydrated. I recommend consulting a General Physician if symptoms persist for 48 hours.
+                        <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+                        <p className="font-bold mb-3 text-blue-300 flex items-center">
+                          <Activity className="w-4 h-4 mr-2" /> Initial Analysis
+                        </p>
+                        <p className="leading-relaxed opacity-90">
+                          Based on your description, this could be related to muscle strain or posture. Have you noticed any numbness or radiating pain down your legs?
+                        </p>
+                        <div className="mt-4 flex gap-2">
+                          <div className="px-3 py-1.5 bg-blue-500/20 rounded-lg text-[10px] font-bold border border-blue-500/30">No, just local pain</div>
+                          <div className="px-3 py-1.5 bg-white/5 rounded-lg text-[10px] font-bold border border-white/10 opacity-50">Yes, it radiates</div>
+                        </div>
                       </motion.div>
+                    </div>
+                    
+                    {/* Mock Input Area */}
+                    <div className="mt-8 pt-6 border-t border-white/5 flex items-center space-x-4">
+                      <div className="flex-grow h-12 bg-white/5 rounded-xl border border-white/10 flex items-center px-4">
+                        <div className="w-2 h-4 bg-blue-500 animate-pulse"></div>
+                      </div>
+                      <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+                        <ArrowRight className="w-5 h-5 text-white" />
+                      </div>
                     </div>
                  </motion.div>
               </div>
