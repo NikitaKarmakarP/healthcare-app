@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Baby, Syringe, Heart, Star, MapPin, Package, ShieldCheck, ArrowRight, Video, Calendar, Activity, TrendingUp, Apple, FileText, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { 
+  Baby, Syringe, Heart, Star, MapPin, Package, ShieldCheck, 
+  ArrowRight, Video, Calendar, Activity, TrendingUp, Apple, 
+  FileText, ChevronRight, CheckCircle2, Sparkles, Clock, Award
+} from 'lucide-react';
 
 const ChildrensHealth = () => {
   const location = useLocation();
@@ -22,9 +26,9 @@ const ChildrensHealth = () => {
   };
 
   const pediatricians = [
-    { name: "Dr. Ananya Roy", special: "Pediatrician", exp: "12 Yrs Exp", rating: 4.9, reviews: 342, image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300", clinic: "Happy Kids Clinic, Kolkata" },
-    { name: "Dr. Vikram Gupta", special: "Child Specialist", exp: "18 Yrs Exp", rating: 4.8, reviews: 512, image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300", clinic: "Apollo Pediatrics, Howrah" },
-    { name: "Dr. Neha Sharma", special: "Pediatric Nutritionist", exp: "8 Yrs Exp", rating: 4.7, reviews: 128, image: "https://images.unsplash.com/photo-1594824432258-8b5e28a55639?auto=format&fit=crop&q=80&w=300", clinic: "Online Consultation Only" }
+    { name: "Dr. Ananya Roy", special: "Pediatrician", exp: "12 Yrs Exp", rating: 4.9, reviews: 342, image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300", clinic: "Happy Kids Clinic, Kolkata", verified: true },
+    { name: "Dr. Vikram Gupta", special: "Child Specialist", exp: "18 Yrs Exp", rating: 4.8, reviews: 512, image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300", clinic: "Apollo Pediatrics, Howrah", verified: true },
+    { name: "Dr. Neha Sharma", special: "Pediatric Nutritionist", exp: "8 Yrs Exp", rating: 4.7, reviews: 128, image: "https://images.unsplash.com/photo-1594824416175-9273b75494f1?auto=format&fit=crop&q=80&w=300", clinic: "Online Consultation Only", verified: true }
   ];
 
   const vaccines = [
@@ -34,386 +38,214 @@ const ChildrensHealth = () => {
     { age: "14 Weeks", list: [{ name: "DTwP 3", status: "upcoming", due: "Oct 25, 2024" }, { name: "IPV 3", status: "upcoming", due: "Oct 25, 2024" }] }
   ];
 
-  const storeItems = [
-    { name: "Sebamed Baby Wash", price: 450, oldPrice: 500, rating: 4.8, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=300", category: "Skin Care" },
-    { name: "Himalaya Baby Powder", price: 150, oldPrice: 175, rating: 4.6, image: "https://images.unsplash.com/photo-1550572017-edb964eb27bf?auto=format&fit=crop&q=80&w=300", category: "Hygiene" },
-    { name: "Cerelac Stage 1 (Wheat)", price: 320, oldPrice: 350, rating: 4.9, image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=300", category: "Nutrition" },
-  ];
-
-  const nutritionPlans = [
-    { age: "0-6 Months", focus: "Exclusive Breastfeeding", tips: ["Breast milk provides all necessary nutrients.", "Feed on demand, usually every 2-3 hours.", "No water is needed during this period."], icon: Apple, color: 'text-rose-500', bg: 'bg-rose-50' },
-    { age: "6-12 Months", focus: "Introduction to Solids", tips: ["Start with pureed fruits like apple and banana.", "Introduce iron-fortified baby cereals.", "Continue breastfeeding alongside solids."], icon: Package, color: 'text-amber-500', bg: 'bg-amber-50' },
-    { age: "1-3 Years", focus: "Toddler Nutrition", tips: ["Offer 3 main meals and 2 healthy snacks.", "Include dairy for calcium (milk, yogurt).", "Avoid choking hazards like whole nuts."], icon: Activity, color: 'text-emerald-500', bg: 'bg-emerald-50' }
-  ];
-
   return (
-    <div className="pt-20 pb-24 bg-[#F8FAFC] min-h-screen font-sans">
+    <div className="pt-20 pb-24 bg-[#F8FBFF] min-h-screen font-sans">
       
       {/* Playful Premium Hero */}
-      <div className="relative bg-[#0B0F19] overflow-hidden rounded-b-[3rem] pb-24 shadow-2xl">
+      <div className="relative bg-[#0B1219] overflow-hidden rounded-b-[4rem] pb-32 shadow-2xl">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[120px]"></div>
-          <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-orange-500/20 rounded-full blur-[100px]"></div>
+          <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[100px]"></div>
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 text-center">
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-3xl mx-auto flex items-center justify-center mb-6 shadow-xl shadow-cyan-500/30"
+            className="w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-[2.5rem] mx-auto flex items-center justify-center mb-8 shadow-2xl shadow-cyan-500/30 border-4 border-white/10"
           >
             <Baby className="w-12 h-12 text-white" />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight"
+            className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight leading-tight"
           >
-            Children's <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Health Hub</span>
+            Nurturing the <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">Next Generation</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10"
+            transition={{ delay: 0.1 }}
+            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium"
           >
-            Everything you need for your child's well-being—from tracking growth to booking top pediatricians.
+            Expert pediatric care, smart vaccination tracking, and specialized nutrition—all in one professional portal.
           </motion.p>
 
           {/* Navigation Tabs */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-2 bg-white/10 backdrop-blur-md p-2 rounded-3xl inline-flex border border-white/20 mx-auto"
+            transition={{ delay: 0.2 }}
+            className="flex flex-wrap justify-center gap-3 bg-white/5 backdrop-blur-2xl p-3 rounded-[2.5rem] border border-white/10 mx-auto inline-flex shadow-2xl"
           >
-            <button 
-              onClick={() => handleTabChange('doctors')}
-              className={`px-5 py-3 rounded-2xl font-bold flex items-center transition-all ${activeTab === 'doctors' ? 'bg-cyan-500 text-white shadow-lg' : 'text-gray-300 hover:text-white hover:bg-white/10'}`}
-            >
-              <Heart className="w-4 h-4 mr-2" /> Doctors
-            </button>
-            <button 
-              onClick={() => handleTabChange('vaccination')}
-              className={`px-5 py-3 rounded-2xl font-bold flex items-center transition-all ${activeTab === 'vaccination' ? 'bg-orange-500 text-white shadow-lg' : 'text-gray-300 hover:text-white hover:bg-white/10'}`}
-            >
-              <Syringe className="w-4 h-4 mr-2" /> Vaccinations
-            </button>
-            <button 
-              onClick={() => handleTabChange('growth')}
-              className={`px-5 py-3 rounded-2xl font-bold flex items-center transition-all ${activeTab === 'growth' ? 'bg-emerald-500 text-white shadow-lg' : 'text-gray-300 hover:text-white hover:bg-white/10'}`}
-            >
-              <TrendingUp className="w-4 h-4 mr-2" /> Growth
-            </button>
-            <button 
-              onClick={() => handleTabChange('nutrition')}
-              className={`px-5 py-3 rounded-2xl font-bold flex items-center transition-all ${activeTab === 'nutrition' ? 'bg-rose-500 text-white shadow-lg' : 'text-gray-300 hover:text-white hover:bg-white/10'}`}
-            >
-              <Apple className="w-4 h-4 mr-2" /> Nutrition
-            </button>
-            <button 
-              onClick={() => handleTabChange('store')}
-              className={`px-5 py-3 rounded-2xl font-bold flex items-center transition-all ${activeTab === 'store' ? 'bg-purple-500 text-white shadow-lg' : 'text-gray-300 hover:text-white hover:bg-white/10'}`}
-            >
-              <Package className="w-4 h-4 mr-2" /> Store
-            </button>
+            {[
+              { id: 'doctors', icon: Heart, label: 'Pediatricians', color: 'bg-cyan-500' },
+              { id: 'vaccination', icon: Syringe, label: 'Vaccination', color: 'bg-orange-500' },
+              { id: 'nutrition', icon: Apple, label: 'Nutrition', color: 'bg-emerald-500' }
+            ].map(tab => (
+              <button 
+                key={tab.id}
+                onClick={() => handleTabChange(tab.id)}
+                className={`px-8 py-4 rounded-[1.5rem] font-black text-xs uppercase tracking-widest flex items-center transition-all ${activeTab === tab.id ? `${tab.color} text-white shadow-xl` : 'text-gray-400 hover:text-white hover:bg-white/10'}`}
+              >
+                <tab.icon className="w-4 h-4 mr-2" /> {tab.label}
+              </button>
+            ))}
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
-        
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
         <AnimatePresence mode="wait">
-          
-          {/* 1. DOCTORS TAB */}
           {activeTab === 'doctors' && (
             <motion.div 
               key="doctors"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="space-y-8 mt-16"
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              <div className="flex justify-between items-end mb-4 px-2">
-                <h2 className="text-2xl font-black text-gray-900">Top Pediatricians</h2>
-                <button className="text-cyan-600 font-bold hover:underline">View All</button>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {pediatricians.map((doc, idx) => (
-                  <div key={idx} className="bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-cyan-200 transition-all group">
-                    <div className="flex items-start gap-4 mb-6">
-                      <img src={doc.image} alt={doc.name} className="w-20 h-20 rounded-2xl object-cover shadow-sm group-hover:scale-105 transition-transform" />
-                      <div>
-                        <div className="flex items-center bg-amber-50 px-2 py-0.5 rounded-lg w-max mb-2">
-                          <Star className="w-3.5 h-3.5 text-amber-500 fill-current mr-1" />
-                          <span className="text-xs font-bold text-amber-700">{doc.rating} ({doc.reviews})</span>
-                        </div>
-                        <h3 className="text-lg font-black text-gray-900 leading-tight mb-1 group-hover:text-cyan-600 transition-colors">{doc.name}</h3>
-                        <p className="text-cyan-600 text-sm font-bold">{doc.special}</p>
+              {pediatricians.map((doc, idx) => (
+                <motion.div 
+                  key={idx}
+                  whileHover={{ y: -10 }}
+                  className="bg-white rounded-[3rem] p-8 shadow-xl border border-gray-100 group relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-50 rounded-full blur-3xl opacity-50 -mr-16 -mt-16 group-hover:bg-cyan-100 transition-colors"></div>
+                  
+                  <div className="relative mb-8">
+                    <img src={doc.image} alt={doc.name} className="w-24 h-24 rounded-[2rem] object-cover border-4 border-white shadow-lg" />
+                    {doc.verified && (
+                      <div className="absolute -bottom-2 -right-2 bg-cyan-600 text-white p-2 rounded-xl border-4 border-white shadow-lg">
+                        <ShieldCheck className="w-4 h-4" />
                       </div>
+                    )}
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-2xl font-black text-gray-900 tracking-tight">{doc.name}</h3>
+                      <p className="text-cyan-600 font-black uppercase text-[10px] tracking-widest">{doc.special}</p>
                     </div>
                     
-                    <div className="space-y-2 mb-6">
-                      <div className="flex items-center text-gray-500 text-sm">
-                        <Activity className="w-4 h-4 mr-2 text-gray-400" /> {doc.exp}
-                      </div>
-                      <div className="flex items-center text-gray-500 text-sm">
-                        <MapPin className="w-4 h-4 mr-2 text-gray-400" /> {doc.clinic}
-                      </div>
+                    <div className="flex items-center space-x-4 text-xs font-bold text-gray-500">
+                      <div className="flex items-center"><Star className="w-4 h-4 text-amber-500 fill-current mr-1" /> {doc.rating}</div>
+                      <div className="flex items-center"><Clock className="w-4 h-4 text-gray-400 mr-1" /> {doc.exp}</div>
                     </div>
-
-                    <div className="flex gap-3">
-                      <button className="flex-1 bg-cyan-50 text-cyan-700 hover:bg-cyan-100 py-3 rounded-xl font-bold transition-colors flex justify-center items-center">
-                        <Video className="w-4 h-4 mr-1.5" /> Consult
+                    
+                    <p className="text-gray-400 text-sm font-medium flex items-center">
+                      <MapPin className="w-4 h-4 mr-2 text-gray-300" /> {doc.clinic}
+                    </p>
+                    
+                    <div className="pt-6 border-t border-gray-50 flex gap-3">
+                      <button className="flex-1 bg-cyan-600 hover:bg-cyan-700 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-lg shadow-cyan-100">
+                        Book Now
                       </button>
-                      <button className="flex-1 bg-gray-900 hover:bg-black text-white py-3 rounded-xl font-bold shadow-md transition-colors">
-                        Book Clinic
+                      <button className="p-4 bg-gray-50 hover:bg-gray-100 text-gray-900 rounded-2xl transition-all border border-gray-200">
+                        <Video className="w-5 h-5" />
                       </button>
                     </div>
                   </div>
-                ))}
-              </div>
+                </motion.div>
+              ))}
             </motion.div>
           )}
 
-          {/* 2. VACCINATION TAB */}
           {activeTab === 'vaccination' && (
             <motion.div 
               key="vaccination"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="mt-6"
+              className="bg-white rounded-[3rem] p-10 lg:p-16 shadow-2xl border border-orange-50"
             >
-              <div className="bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100 mb-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -mt-20 -mr-20"></div>
-                
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 relative z-10 gap-4">
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center mr-4">
-                      <Baby className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-black text-gray-900">Aarav's Timeline</h2>
-                      <p className="text-sm font-bold text-gray-500">Born: 14 Aug 2024</p>
-                    </div>
-                  </div>
-                  <button className="bg-orange-50 text-orange-600 hover:bg-orange-100 px-4 py-2 rounded-xl font-bold transition-colors flex items-center">
-                    <Calendar className="w-4 h-4 mr-2" /> Sync Calendar
-                  </button>
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+                <div>
+                  <h2 className="text-3xl font-black text-gray-900 tracking-tight flex items-center">
+                    <Syringe className="w-8 h-8 text-orange-500 mr-3" /> Vaccination Timeline
+                  </h2>
+                  <p className="text-gray-400 font-bold uppercase text-[10px] tracking-widest mt-1">Smart tracking for your child's safety</p>
                 </div>
+                <div className="flex gap-4">
+                  <div className="bg-orange-50 px-6 py-3 rounded-2xl border border-orange-100">
+                    <p className="text-[10px] font-black text-orange-600 uppercase tracking-widest">Next Due</p>
+                    <p className="text-lg font-black text-gray-900">Oct 25, 2024</p>
+                  </div>
+                </div>
+              </div>
 
-                <div className="space-y-8 relative z-10 before:absolute before:inset-0 before:ml-4 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-gray-200 before:via-gray-200 before:to-transparent">
-                  
-                  {vaccines.map((phase, idx) => (
-                    <div key={idx} className="relative flex items-start gap-6">
-                      <div className={`w-8 h-8 rounded-full border-4 border-white shadow-sm flex items-center justify-center flex-shrink-0 z-10 mt-1 ${phase.list.some(v => v.status === 'pending') ? 'bg-rose-500 animate-pulse' : phase.list.every(v => v.status === 'completed') ? 'bg-emerald-500' : 'bg-gray-200'}`}>
-                        {phase.list.every(v => v.status === 'completed') && <span className="text-white text-xs font-bold">✓</span>}
-                      </div>
-                      
-                      <div className="flex-1">
-                        <h3 className="text-lg font-black text-gray-900 mb-4">{phase.age}</h3>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {phase.list.map((vac, vIdx) => (
-                            <div key={vIdx} className={`p-4 rounded-2xl border ${vac.status === 'completed' ? 'bg-emerald-50/50 border-emerald-100' : vac.status === 'pending' ? 'bg-rose-50 border-rose-200 shadow-sm' : 'bg-gray-50 border-gray-100'}`}>
-                              <div className="flex justify-between items-start mb-2">
-                                <h4 className={`font-bold ${vac.status === 'completed' ? 'text-emerald-800' : vac.status === 'pending' ? 'text-rose-800' : 'text-gray-700'}`}>{vac.name}</h4>
-                                {vac.status === 'completed' && <ShieldCheck className="w-5 h-5 text-emerald-500" />}
-                              </div>
-                              {vac.status === 'pending' && <p className="text-xs font-bold text-rose-600 mb-3">{vac.due}</p>}
-                              {vac.status === 'upcoming' && <p className="text-xs font-bold text-gray-500 mb-3">Due: {vac.due}</p>}
-                              
-                              {vac.status === 'pending' && (
-                                <button className="w-full bg-rose-600 text-white text-xs font-bold py-2 rounded-lg hover:bg-rose-700 transition-colors">
-                                  Book Vaccine
-                                </button>
-                              )}
+              <div className="space-y-12 relative before:absolute before:left-8 before:top-4 before:bottom-4 before:w-1 before:bg-gradient-to-b before:from-green-100 before:via-orange-100 before:to-gray-100">
+                {vaccines.map((vax, idx) => (
+                  <div key={idx} className="relative pl-20 group">
+                    <div className={`absolute left-0 top-0 w-16 h-16 rounded-2xl border-4 border-white shadow-xl flex items-center justify-center z-10 transition-transform group-hover:scale-110 ${vax.list.some(v => v.status === 'pending') ? 'bg-orange-500 text-white shadow-orange-200' : vax.list.every(v => v.status === 'completed') ? 'bg-green-500 text-white shadow-green-200' : 'bg-gray-100 text-gray-400'}`}>
+                      <Calendar className="w-6 h-6" />
+                    </div>
+                    
+                    <div className="space-y-6">
+                      <h3 className="text-xl font-black text-gray-900 tracking-tight">{vax.age}</h3>
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {vax.list.map((v, i) => (
+                          <div key={i} className={`p-6 rounded-[2rem] border transition-all flex items-center justify-between group/item ${v.status === 'completed' ? 'bg-green-50/50 border-green-100' : v.status === 'pending' ? 'bg-orange-50 border-orange-200 shadow-lg' : 'bg-white border-gray-100 opacity-60'}`}>
+                            <div>
+                              <p className={`font-black text-sm ${v.status === 'pending' ? 'text-orange-700' : 'text-gray-900'}`}>{v.name}</p>
+                              {v.due && <p className="text-[10px] font-bold text-orange-600 mt-1 uppercase tracking-widest">{v.due}</p>}
                             </div>
-                          ))}
-                        </div>
+                            {v.status === 'completed' ? (
+                              <CheckCircle2 className="w-5 h-5 text-green-500" />
+                            ) : v.status === 'pending' ? (
+                              <button className="bg-orange-500 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-600 shadow-lg shadow-orange-200">Book</button>
+                            ) : (
+                              <Clock className="w-5 h-5 text-gray-300" />
+                            )}
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  ))}
-                  
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* 3. GROWTH TAB */}
-          {activeTab === 'growth' && (
-            <motion.div 
-              key="growth"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="mt-6 space-y-6"
-            >
-              <div className="grid md:grid-cols-2 gap-6">
-                
-                {/* Weight Card */}
-                <div className="bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100 rounded-full mix-blend-multiply filter blur-2xl opacity-50"></div>
-                  <div className="flex justify-between items-center mb-6 relative z-10">
-                    <h3 className="text-xl font-black text-gray-900">Weight Tracker</h3>
-                    <div className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg font-bold text-sm">Normal Range</div>
-                  </div>
-                  <div className="flex items-baseline gap-2 mb-8 relative z-10">
-                    <span className="text-5xl font-black text-emerald-600">6.2</span>
-                    <span className="text-gray-500 font-bold">kg</span>
-                  </div>
-                  <button className="w-full bg-emerald-500 text-white py-3 rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md relative z-10">
-                    Log New Weight
-                  </button>
-                </div>
-
-                {/* Height Card */}
-                <div className="bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full mix-blend-multiply filter blur-2xl opacity-50"></div>
-                  <div className="flex justify-between items-center mb-6 relative z-10">
-                    <h3 className="text-xl font-black text-gray-900">Height Tracker</h3>
-                    <div className="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg font-bold text-sm">Growing Well</div>
-                  </div>
-                  <div className="flex items-baseline gap-2 mb-8 relative z-10">
-                    <span className="text-5xl font-black text-blue-600">61.5</span>
-                    <span className="text-gray-500 font-bold">cm</span>
-                  </div>
-                  <button className="w-full bg-blue-500 text-white py-3 rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-md relative z-10">
-                    Log New Height
-                  </button>
-                </div>
-
-              </div>
-
-              {/* Milestones */}
-              <div className="bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100">
-                <h3 className="text-xl font-black text-gray-900 mb-6 flex items-center">
-                  <Star className="w-6 h-6 mr-2 text-amber-500 fill-current" /> Recent Milestones
-                </h3>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100 flex items-start gap-3">
-                    <div className="bg-white p-2 rounded-full shadow-sm"><CheckCircle2 className="w-5 h-5 text-emerald-500" /></div>
-                    <div>
-                      <p className="font-bold text-gray-900 text-sm">First Smile</p>
-                      <p className="text-xs text-gray-500">Achieved at 2 months</p>
-                    </div>
-                  </div>
-                  <div className="bg-amber-50/50 rounded-2xl p-4 border border-amber-100 flex items-start gap-3">
-                    <div className="bg-white p-2 rounded-full shadow-sm"><Activity className="w-5 h-5 text-amber-500" /></div>
-                    <div>
-                      <p className="font-bold text-gray-900 text-sm">Rolling Over</p>
-                      <p className="text-xs text-amber-600">Expected soon (4-6 months)</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* 4. NUTRITION TAB */}
-          {activeTab === 'nutrition' && (
-            <motion.div 
-              key="nutrition"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="mt-6 space-y-6"
-            >
-              <div className="bg-gradient-to-br from-rose-500 to-orange-500 rounded-[2rem] p-8 shadow-xl text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full mix-blend-overlay filter blur-3xl"></div>
-                <div className="relative z-10 max-w-2xl">
-                  <Apple className="w-12 h-12 text-white mb-4" />
-                  <h2 className="text-3xl font-black mb-2">Pediatric Nutrition Guide</h2>
-                  <p className="text-rose-100 font-medium mb-6">Ensure your child gets the right nutrients at every stage of their development. Reviewed by top pediatric nutritionists.</p>
-                  <button className="bg-white text-rose-600 px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-gray-50 transition-colors">
-                    Consult Dietitian
-                  </button>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                {nutritionPlans.map((plan, idx) => (
-                  <div key={idx} className="bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
-                    <div className={`w-12 h-12 rounded-2xl ${plan.bg} flex items-center justify-center mb-6`}>
-                      <plan.icon className={`w-6 h-6 ${plan.color}`} />
-                    </div>
-                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">{plan.age}</h3>
-                    <h4 className="text-xl font-black text-gray-900 mb-4">{plan.focus}</h4>
-                    <ul className="space-y-3">
-                      {plan.tips.map((tip, tIdx) => (
-                        <li key={tIdx} className="flex items-start text-sm text-gray-600">
-                          <ChevronRight className={`w-4 h-4 mr-2 flex-shrink-0 mt-0.5 ${plan.color}`} />
-                          <span>{tip}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 ))}
               </div>
             </motion.div>
           )}
 
-          {/* 5. STORE TAB */}
-          {activeTab === 'store' && (
+          {activeTab === 'nutrition' && (
             <motion.div 
-              key="store"
+              key="nutrition"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="mt-6 space-y-8"
+              className="grid md:grid-cols-3 gap-8"
             >
-              <div className="flex justify-between items-end mb-4 px-2">
-                <h2 className="text-2xl font-black text-gray-900">Essentials for Baby</h2>
-                <button className="text-purple-600 font-bold hover:underline">Go to Pharmacy</button>
-              </div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {storeItems.map((item, idx) => {
-                  const discount = Math.round(((item.oldPrice - item.price) / item.oldPrice) * 100);
-                  
-                  return (
-                    <div key={idx} className="bg-white rounded-[2rem] p-4 shadow-sm border border-gray-100 hover:shadow-xl hover:border-purple-200 transition-all group relative">
-                      <div className="absolute top-4 left-4 z-10 bg-purple-500 text-white text-xs font-black px-2 py-1 rounded-lg shadow-md">
-                        {discount}% OFF
-                      </div>
-                      
-                      <div className="bg-gray-50 rounded-[1.5rem] h-48 mb-4 relative overflow-hidden flex items-center justify-center p-4">
-                        <img src={item.image} alt={item.name} className="object-contain h-full mix-blend-multiply group-hover:scale-110 transition-transform duration-500" />
-                      </div>
-                      
-                      <div className="px-2">
-                        <div className="flex justify-between items-start mb-1">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">{item.category}</p>
-                          <div className="flex items-center bg-amber-50 px-2 py-0.5 rounded-md">
-                            <Star className="w-3 h-3 text-amber-500 fill-current mr-1" />
-                            <span className="text-xs font-bold text-amber-700">{item.rating}</span>
-                          </div>
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-900 leading-tight mb-4 group-hover:text-purple-600 transition-colors">{item.name}</h3>
-                        
-                        <div className="flex items-center justify-between mt-auto">
-                          <div>
-                            <span className="text-2xl font-black text-gray-900">₹{item.price}</span>
-                            <span className="text-sm text-gray-400 line-through ml-2 font-medium">₹{item.oldPrice}</span>
-                          </div>
-                          
-                          <button className="bg-purple-50 text-purple-700 hover:bg-purple-600 hover:text-white px-4 py-2 rounded-xl font-bold transition-colors flex items-center">
-                            Add
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+              {[
+                { age: "0-6 Months", focus: "Exclusive Breastfeeding", tips: ["Breast milk provides all nutrients.", "Feed on demand.", "No water is needed."], color: 'cyan', icon: Baby },
+                { age: "6-12 Months", focus: "Intro to Solids", tips: ["Start with pureed fruits.", "Iron-fortified cereals.", "Continue breastfeeding."], color: 'orange', icon: Apple },
+                { age: "1-3 Years", focus: "Toddler Diet", tips: ["3 meals + 2 snacks.", "Include dairy for calcium.", "Avoid choking hazards."], color: 'emerald', icon: Activity }
+              ].map((plan, idx) => (
+                <div key={idx} className="bg-white rounded-[3rem] p-10 shadow-xl border border-gray-100 group relative overflow-hidden">
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-${plan.color === 'cyan' ? 'cyan-50' : plan.color === 'orange' ? 'orange-50' : 'emerald-50'} rounded-full blur-3xl opacity-50 -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700`}></div>
+                  <div className={`w-16 h-16 ${plan.color === 'cyan' ? 'bg-cyan-50 text-cyan-600' : plan.color === 'orange' ? 'bg-orange-50 text-orange-600' : 'bg-emerald-50 text-emerald-600'} rounded-2xl flex items-center justify-center mb-8 relative z-10 group-hover:scale-110 transition-transform`}>
+                    <plan.icon className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{plan.age}</h3>
+                  <h4 className="text-2xl font-black text-gray-900 tracking-tight mb-6">{plan.focus}</h4>
+                  <ul className="space-y-4 mb-8">
+                    {plan.tips.map((tip, i) => (
+                      <li key={i} className="flex items-start text-sm font-medium text-gray-600">
+                        <CheckCircle2 className={`w-4 h-4 mr-3 mt-0.5 ${plan.color === 'cyan' ? 'text-cyan-500' : plan.color === 'orange' ? 'text-orange-500' : 'text-emerald-500'} flex-shrink-0`} />
+                        {tip}
+                      </li>
+                    ))}
+                  </ul>
+                  <button className={`w-full py-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all ${plan.color === 'cyan' ? 'bg-cyan-600' : plan.color === 'orange' ? 'bg-orange-600' : 'bg-emerald-600'} text-white shadow-lg`}>
+                    Download Guide
+                  </button>
+                </div>
+              ))}
             </motion.div>
           )}
-
         </AnimatePresence>
-
       </div>
     </div>
   );

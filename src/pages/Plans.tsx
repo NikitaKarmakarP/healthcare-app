@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Star, Zap, Shield, HeartPulse, Sparkles, ChevronDown } from 'lucide-react';
+import { 
+  CheckCircle2, Star, Zap, Shield, HeartPulse, Sparkles, 
+  ChevronDown, ShieldCheck, Award, Crown, ArrowRight, Info
+} from 'lucide-react';
 
 const Plans = () => {
   const [isAnnual, setIsAnnual] = useState(true);
@@ -14,181 +17,173 @@ const Plans = () => {
   ];
 
   return (
-    <div className="pt-24 pb-24 bg-[#F8FAFC] min-h-screen relative overflow-hidden font-sans">
-      {/* Background Elements */}
-      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-primary-50/50 to-transparent pointer-events-none"></div>
-      <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary-400/10 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div className="pt-20 pb-24 bg-[#F8FBFF] min-h-screen font-sans">
+      
+      {/* Premium Dark Hero */}
+      <div className="relative bg-[#0B0F19] overflow-hidden rounded-b-[4rem] pb-32 shadow-2xl">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[100px]"></div>
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 text-center">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center space-x-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full font-bold text-sm mb-6 border border-blue-100"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-[10px] font-black uppercase tracking-widest backdrop-blur-md mb-8"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Premium Healthcare Packages</span>
+            <ShieldCheck className="w-4 h-4 mr-2 text-blue-400" />
+            Bharat Health Assurance
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight"
+            className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tight leading-tight"
           >
-            Invest in Your Family's <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-500">Health & Wellbeing</span>
+            Premium Care for <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Your Loved Ones</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-500 text-xl"
+            transition={{ delay: 0.1 }}
+            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium"
           >
-            Affordable, premium healthcare starting at just ₹499/month. Get unlimited AI consultations and priority doctor bookings.
+            Affordable subscription plans tailored for individual and family health needs. Get priority access to India's top medical network.
           </motion.p>
 
           {/* Billing Toggle */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mt-10 flex items-center justify-center space-x-4"
+            transition={{ delay: 0.2 }}
+            className="flex items-center justify-center space-x-6"
           >
-            <span className={`font-bold ${!isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>Monthly</span>
+            <span className={`text-xs font-black uppercase tracking-widest transition-colors ${!isAnnual ? 'text-white' : 'text-gray-500'}`}>Monthly</span>
             <button 
               onClick={() => setIsAnnual(!isAnnual)}
-              className="relative w-20 h-10 bg-primary-100 rounded-full p-1 transition-colors focus:outline-none"
+              className="relative w-20 h-10 bg-white/5 backdrop-blur-md rounded-full p-1 border border-white/10 transition-all"
             >
               <motion.div 
                 animate={{ x: isAnnual ? 40 : 0 }}
-                className="w-8 h-8 bg-primary-600 rounded-full shadow-md"
+                className="w-8 h-8 bg-blue-500 rounded-full shadow-lg shadow-blue-500/30"
               />
             </button>
-            <span className={`font-bold flex items-center ${isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>
-              Annually 
-              <span className="ml-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-md">Save 20%</span>
+            <span className={`text-xs font-black uppercase tracking-widest transition-colors flex items-center ${isAnnual ? 'text-white' : 'text-gray-500'}`}>
+              Annual 
+              <span className="ml-2 bg-emerald-500 text-white text-[8px] px-2 py-1 rounded-lg shadow-lg">Save 20%</span>
             </span>
           </motion.div>
         </div>
+      </div>
 
-        {/* Pricing Cards */}
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
+        
+        {/* Pricing Grid */}
+        <div className="grid lg:grid-cols-3 gap-8 items-center">
           
           {/* Basic Plan */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            className="bg-white rounded-[2.5rem] p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow relative z-10"
+            className="bg-white rounded-[3rem] p-10 shadow-xl border border-gray-100 flex flex-col group h-full"
           >
-            <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 border border-gray-100">
-              <Shield className="w-7 h-7 text-gray-600" />
+            <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-8 border border-gray-100 group-hover:scale-110 transition-transform">
+              <Shield className="w-8 h-8 text-gray-400" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Basic Care</h3>
-            <p className="text-gray-500 text-sm mb-6 h-10">Perfect for occasional health needs and single users.</p>
-            <div className="mb-8 flex items-end">
-              <span className="text-5xl font-black text-gray-900">Free</span>
-              <span className="text-gray-500 font-medium ml-2 mb-1">/forever</span>
+            <h3 className="text-2xl font-black text-gray-900 mb-2 tracking-tight">Basic Care</h3>
+            <p className="text-gray-400 text-sm font-medium mb-10 leading-relaxed">Perfect for individuals starting their health journey.</p>
+            <div className="mb-10">
+              <span className="text-5xl font-black text-gray-900 tracking-tighter">Free</span>
+              <span className="text-gray-400 font-black text-xs uppercase tracking-widest ml-2">/ Life</span>
             </div>
-            <ul className="space-y-4 mb-8">
-              {[
-                "Access to Hospital Search",
-                "Basic AI Symptom Checker",
-                "Standard Appointment Booking",
-                "Digital Health Vault (50MB)",
-                "Community Forum Access"
-              ].map((feature, i) => (
-                <li key={i} className="flex items-start text-sm text-gray-600 font-medium">
-                  <CheckCircle2 className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" /> 
-                  {feature}
+            <ul className="space-y-5 mb-12 flex-1">
+              {["Basic AI Diagnostics", "Hospital Search", "Digital Health Vault", "Community Access"].map((f, i) => (
+                <li key={i} className="flex items-center text-sm font-black text-gray-600">
+                  <CheckCircle2 className="w-5 h-5 text-gray-300 mr-3" /> {f}
                 </li>
               ))}
             </ul>
-            <button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-900 py-4 rounded-2xl font-bold transition-colors border border-gray-200">
+            <button className="w-full py-5 rounded-2xl font-black text-xs uppercase tracking-widest border-2 border-gray-100 text-gray-400 hover:bg-gray-50 transition-all">
               Current Plan
             </button>
           </motion.div>
 
-          {/* Prime Plan */}
+          {/* Prime Plan (Featured) */}
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="relative z-20 group"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative group h-full"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-primary-400 to-blue-600 rounded-[2.5rem] blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
-            <div className="bg-[#0B0F19] rounded-[2.5rem] p-8 shadow-2xl border border-gray-800 relative transform md:-translate-y-4">
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary-500 to-blue-500 text-white px-6 py-1.5 rounded-full text-sm font-bold flex items-center shadow-[0_0_20px_rgba(59,130,246,0.5)]">
-                <Star className="w-4 h-4 mr-1.5" /> MOST POPULAR
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-600 to-indigo-700 rounded-[3.5rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+            <div className="bg-[#0B0F19] rounded-[3.5rem] p-12 shadow-2xl border border-white/10 relative overflow-hidden transform lg:-translate-y-6">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl -mr-16 -mt-16"></div>
+              <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest absolute top-8 right-8 shadow-xl">
+                Best Value
               </div>
-              <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 border border-blue-500/30">
-                <HeartPulse className="w-7 h-7 text-blue-400" />
+              
+              <div className="w-20 h-20 bg-blue-500/10 rounded-[2rem] flex items-center justify-center mb-10 border border-blue-500/20">
+                <Crown className="w-10 h-10 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">MediSaathi Prime</h3>
-              <p className="text-gray-400 text-sm mb-6 h-10">Complete proactive health protection for the entire family (up to 4).</p>
-              <div className="mb-8 flex items-end">
-                <span className="text-5xl font-black text-white">₹{isAnnual ? '399' : '499'}</span>
-                <span className="text-gray-400 font-medium ml-2 mb-1">/month</span>
+              
+              <h3 className="text-3xl font-black text-white mb-3 tracking-tight">MediSaathi Prime</h3>
+              <p className="text-gray-400 text-sm font-medium mb-10 leading-relaxed">Full coverage for your family with priority benefits.</p>
+              
+              <div className="mb-10 flex items-end">
+                <span className="text-6xl font-black text-white tracking-tighter">₹{isAnnual ? '399' : '499'}</span>
+                <span className="text-gray-500 font-black text-xs uppercase tracking-widest ml-3 mb-2">/ month</span>
               </div>
-              <ul className="space-y-4 mb-8">
+              
+              <ul className="space-y-5 mb-12">
                 {[
-                  "Everything in Basic",
-                  "Unlimited AI Report Analyzer",
-                  "2 Free Teleconsultations/mo",
-                  "15% off Pharmacy Orders",
-                  "Priority Ambulance Dispatch",
-                  "Cover up to 4 family members"
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start text-sm text-gray-200 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-primary-400 mr-3 flex-shrink-0" /> 
-                    {feature}
+                  "Unlimited AI Report Analysis",
+                  "2 Free Teleconsultations / mo",
+                  "15% Pharmacy Discount",
+                  "Priority Booking & Ambulance",
+                  "Family Coverage (up to 4)"
+                ].map((f, i) => (
+                  <li key={i} className="flex items-center text-sm font-black text-gray-200">
+                    <CheckCircle2 className="w-5 h-5 text-blue-400 mr-4" /> {f}
                   </li>
                 ))}
               </ul>
-              <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-primary-500 to-blue-500 hover:from-primary-400 hover:to-blue-400 text-white py-4 rounded-2xl font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] flex items-center justify-center"
-              >
-                <Zap className="w-5 h-5 mr-2" /> Upgrade to Prime
-              </motion.button>
+              
+              <button className="w-full bg-blue-600 hover:bg-blue-500 text-white py-6 rounded-[2rem] font-black text-xs uppercase tracking-widest shadow-2xl shadow-blue-600/30 transition-all flex items-center justify-center group/btn">
+                Upgrade to Prime <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+              </button>
             </div>
           </motion.div>
 
           {/* Platinum Plan */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 }}
-            className="bg-white rounded-[2.5rem] p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow relative z-10"
+            className="bg-white rounded-[3rem] p-10 shadow-xl border border-gray-100 flex flex-col group h-full"
           >
-            <div className="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 border border-purple-100">
-              <Zap className="w-7 h-7 text-purple-600" />
+            <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-8 border border-purple-100 group-hover:scale-110 transition-transform">
+              <Zap className="w-8 h-8 text-purple-600" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Platinum Care</h3>
-            <p className="text-gray-500 text-sm mb-6 h-10">Premium care for chronic conditions & senior citizens.</p>
-            <div className="mb-8 flex items-end">
-              <span className="text-5xl font-black text-gray-900">₹{isAnnual ? '1,199' : '1,499'}</span>
-              <span className="text-gray-500 font-medium ml-2 mb-1">/month</span>
+            <h3 className="text-2xl font-black text-gray-900 mb-2 tracking-tight">Platinum Care</h3>
+            <p className="text-gray-400 text-sm font-medium mb-10 leading-relaxed">Proactive management for chronic care and seniors.</p>
+            <div className="mb-10">
+              <span className="text-5xl font-black text-gray-900 tracking-tighter">₹{isAnnual ? '1199' : '1499'}</span>
+              <span className="text-gray-400 font-black text-xs uppercase tracking-widest ml-2">/ month</span>
             </div>
-            <ul className="space-y-4 mb-8">
+            <ul className="space-y-5 mb-12 flex-1">
               {[
-                "Everything in Prime",
-                "Unlimited Teleconsultations",
-                "Free Monthly Blood Test (Home)",
-                "Dedicated Care Manager",
-                "Diet & Fitness Planner",
-                "Post-Op Recovery Assistance"
-              ].map((feature, i) => (
-                <li key={i} className="flex items-start text-sm text-gray-600 font-medium">
-                  <CheckCircle2 className="w-5 h-5 text-purple-500 mr-3 flex-shrink-0" /> 
-                  {feature}
+                "Unlimited Consultations",
+                "Free Monthly Home Tests",
+                "Personal Care Manager",
+                "Advanced Health Tracking",
+                "Priority Post-Op Support"
+              ].map((f, i) => (
+                <li key={i} className="flex items-center text-sm font-black text-gray-600">
+                  <CheckCircle2 className="w-5 h-5 text-purple-400 mr-3" /> {f}
                 </li>
               ))}
             </ul>
-            <button className="w-full bg-purple-50 hover:bg-purple-100 text-purple-700 py-4 rounded-2xl font-bold transition-colors border border-purple-200">
+            <button className="w-full py-5 rounded-2xl font-black text-xs uppercase tracking-widest bg-purple-600 text-white shadow-xl shadow-purple-200 hover:bg-purple-700 transition-all">
               Choose Platinum
             </button>
           </motion.div>
@@ -196,54 +191,65 @@ const Plans = () => {
         </div>
 
         {/* FAQ Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-32 max-w-3xl mx-auto"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-gray-500">Everything you need to know about the product and billing.</p>
-          </div>
-          
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div 
-                key={idx} 
-                className={`bg-white rounded-2xl border transition-all duration-300 ${activeFaq === idx ? 'border-primary-200 shadow-md' : 'border-gray-100 shadow-sm hover:border-gray-200'}`}
-              >
-                <button 
-                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+        <div className="mt-40 max-w-4xl mx-auto">
+           <div className="text-center mb-20">
+              <h2 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Got Questions?</h2>
+              <p className="text-gray-500 font-medium text-lg">Everything you need to know about our health plans.</p>
+           </div>
+           
+           <div className="space-y-4">
+              {faqs.map((faq, idx) => (
+                <motion.div 
+                  key={idx}
+                  className={`bg-white rounded-3xl border transition-all ${activeFaq === idx ? 'border-blue-200 shadow-xl' : 'border-gray-100 shadow-sm hover:border-blue-100'}`}
                 >
-                  <span className={`font-bold ${activeFaq === idx ? 'text-primary-600' : 'text-gray-900'}`}>{faq.q}</span>
-                  <motion.div
-                    animate={{ rotate: activeFaq === idx ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
+                  <button 
+                    onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                    className="w-full p-8 flex items-center justify-between text-left outline-none"
                   >
-                    <ChevronDown className={`w-5 h-5 ${activeFaq === idx ? 'text-primary-500' : 'text-gray-400'}`} />
-                  </motion.div>
-                </button>
-                <AnimatePresence>
-                  {activeFaq === idx && (
-                    <motion.div 
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-5 pt-0 text-gray-600 text-sm leading-relaxed border-t border-gray-50 mt-2 pt-4">
-                        {faq.a}
-                      </div>
+                    <span className={`text-lg font-black tracking-tight ${activeFaq === idx ? 'text-blue-600' : 'text-gray-900'}`}>{faq.q}</span>
+                    <motion.div animate={{ rotate: activeFaq === idx ? 180 : 0 }}>
+                       <ChevronDown className={`w-6 h-6 ${activeFaq === idx ? 'text-blue-500' : 'text-gray-300'}`} />
                     </motion.div>
-                  )}
-                </AnimatePresence>
+                  </button>
+                  <AnimatePresence>
+                    {activeFaq === idx && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="p-8 pt-0 text-gray-500 font-medium leading-relaxed border-t border-gray-50">
+                           {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+           </div>
+        </div>
+
+        {/* Global Support Card */}
+        <div className="mt-32 bg-gray-900 rounded-[4rem] p-16 text-center relative overflow-hidden shadow-2xl">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+           <div className="relative z-10 max-w-2xl mx-auto">
+              <Award className="w-16 h-16 text-emerald-400 mx-auto mb-8" />
+              <h3 className="text-3xl font-black text-white mb-6">Trusted by 1M+ Users in India</h3>
+              <p className="text-gray-400 font-medium mb-10 leading-relaxed">Join the Bharat health revolution. Secure your family's future with the most advanced AI healthcare platform.</p>
+              <div className="flex flex-wrap justify-center gap-6">
+                 <div className="bg-white/5 px-6 py-4 rounded-2xl border border-white/10 flex items-center">
+                    <ShieldCheck className="w-5 h-5 text-emerald-400 mr-3" />
+                    <span className="text-white font-black text-xs uppercase tracking-widest">ISO Certified</span>
+                 </div>
+                 <div className="bg-white/5 px-6 py-4 rounded-2xl border border-white/10 flex items-center">
+                    <Star className="w-5 h-5 text-amber-400 mr-3" />
+                    <span className="text-white font-black text-xs uppercase tracking-widest">4.9/5 Rating</span>
+                 </div>
               </div>
-            ))}
-          </div>
-        </motion.div>
+           </div>
+        </div>
 
       </div>
     </div>
@@ -251,3 +257,4 @@ const Plans = () => {
 };
 
 export default Plans;
+

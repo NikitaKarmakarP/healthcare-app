@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Pill, UploadCloud, Search, Truck, Clock, ShieldCheck, Heart, ArrowRight, Percent, Package, Star, ShoppingCart, Plus, Minus, Tag, Activity } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Pill, UploadCloud, Search, Truck, Clock, ShieldCheck, Heart, 
+  ArrowRight, Percent, Package, Star, ShoppingCart, Plus, Minus, 
+  Tag, Activity, ChevronRight, Zap, Droplets, Leaf, CheckCircle2, Crown
+} from 'lucide-react';
 
 const Pharmacy = () => {
   const [cartItems, setCartItems] = useState<{id: number, quantity: number}[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const categories = [
-    { name: 'Vitamins & Supplements', icon: Pill, color: 'text-orange-500', bg: 'bg-orange-50' },
-    { name: 'Diabetes Care', icon: Activity, color: 'text-blue-500', bg: 'bg-blue-50' },
-    { name: 'Heart Health', icon: Heart, color: 'text-red-500', bg: 'bg-red-50' },
-    { name: 'Baby Care', icon: ShieldCheck, color: 'text-purple-500', bg: 'bg-purple-50' },
-    { name: 'Personal Care', icon: Package, color: 'text-teal-500', bg: 'bg-teal-50' },
-    { name: 'Ayurvedic', icon: Percent, color: 'text-green-500', bg: 'bg-green-50' },
+    { name: 'Vitamins & Supplements', icon: Pill, color: 'orange', bg: 'bg-orange-50' },
+    { name: 'Diabetes Care', icon: Activity, color: 'blue', bg: 'bg-blue-50' },
+    { name: 'Heart Health', icon: Heart, color: 'rose', bg: 'bg-rose-50' },
+    { name: 'Baby Care', icon: Leaf, color: 'purple', bg: 'bg-purple-50' },
+    { name: 'Personal Care', icon: Package, color: 'teal', bg: 'bg-teal-50' },
+    { name: 'Ayurvedic', icon: Leaf, color: 'emerald', bg: 'bg-emerald-50' },
   ];
 
   const popularMedicines = [
@@ -46,90 +51,93 @@ const Pharmacy = () => {
   };
 
   return (
-    <div className="pt-20 pb-24 bg-[#F8FAFC] min-h-screen font-sans">
+    <div className="pt-20 bg-[#F8FBFF] min-h-screen font-sans">
       
-      {/* Premium Hero Section */}
-      <div className="relative bg-[#0B0F19] overflow-hidden rounded-b-[3rem] pb-24 shadow-2xl">
-        {/* Background Gradients */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-          <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-teal-600/30 rounded-full blur-[120px]"></div>
-          <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-primary-600/20 rounded-full blur-[100px]"></div>
+      {/* Premium Dark Hero Section */}
+      <div className="relative bg-[#0B0F19] overflow-hidden rounded-b-[4rem] pb-24 shadow-2xl">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-teal-600/20 rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[100px]"></div>
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-16">
             
             {/* Hero Content */}
-            <div className="w-full md:w-1/2">
+            <div className="w-full lg:w-3/5">
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center space-x-2 bg-teal-900/50 border border-teal-500/30 text-teal-300 px-4 py-2 rounded-full text-sm font-bold mb-6 backdrop-blur-md"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="inline-flex items-center space-x-3 bg-teal-500/10 border border-teal-500/30 text-teal-400 px-5 py-2.5 rounded-full font-black text-[10px] uppercase tracking-widest mb-8 backdrop-blur-md"
               >
                 <Tag className="w-4 h-4" />
-                <span>Flat 15% OFF on Prescription Meds</span>
+                <span>Save 15% on first prescription order</span>
               </motion.div>
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight"
+                className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tight leading-tight"
               >
-                Your Trusted <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-primary-400">Online Pharmacy</span>
+                Bharat's Smart <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-400 to-green-400">
+                  Digital Pharmacy
+                </span>
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-gray-400 text-lg md:text-xl mb-8"
+                transition={{ delay: 0.1 }}
+                className="text-gray-400 text-lg md:text-xl mb-12 font-medium max-w-xl"
               >
-                Order genuine medicines, health products, and devices. Get fast 2-hour delivery directly to your doorstep.
+                Order authentic medicines, supplements, and wellness essentials with 2-hour express delivery.
               </motion.p>
 
-              {/* Main Search Bar */}
+              {/* Advanced Search */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-white p-2 rounded-2xl md:rounded-full shadow-2xl flex flex-col md:flex-row gap-2"
+                transition={{ delay: 0.2 }}
+                className="bg-white/10 backdrop-blur-3xl p-2 rounded-[2.5rem] border border-white/20 shadow-2xl flex flex-col md:flex-row gap-2"
               >
-                <div className="flex-1 flex items-center px-4 py-2">
-                  <Search className="text-primary-500 w-6 h-6 mr-3 flex-shrink-0" />
+                <div className="flex-1 flex items-center px-6 py-4">
+                  <Search className="text-teal-400 w-6 h-6 mr-4" />
                   <input 
                     type="text" 
-                    placeholder="Search for medicines, vitamins, brands..." 
-                    className="w-full bg-transparent text-gray-800 focus:outline-none placeholder-gray-400 font-medium text-lg"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search medicines, vitamins or brands..." 
+                    className="w-full bg-transparent text-white focus:outline-none placeholder-gray-500 font-bold"
                   />
                 </div>
-                <button className="bg-gradient-to-r from-teal-500 to-primary-600 hover:opacity-90 text-white px-8 py-4 rounded-xl md:rounded-full font-bold transition-all shadow-lg text-lg flex items-center justify-center">
+                <button className="bg-teal-600 hover:bg-teal-500 text-white px-10 py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest transition-all shadow-xl shadow-teal-600/20">
                   Search
                 </button>
               </motion.div>
             </div>
 
-            {/* Hero Graphic / Upload Box */}
+            {/* Prescription Box */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              className="w-full md:w-5/12"
+              transition={{ delay: 0.3 }}
+              className="w-full lg:w-2/5"
             >
-              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group cursor-pointer hover:bg-white/15 transition-all">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/20 rounded-full mix-blend-overlay filter blur-2xl group-hover:bg-teal-500/30 transition-all"></div>
+              <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[3.5rem] p-10 shadow-2xl relative overflow-hidden group cursor-pointer hover:bg-white/10 transition-all">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
                 
                 <div className="flex flex-col items-center text-center relative z-10">
-                  <div className="w-20 h-20 bg-gradient-to-br from-teal-400 to-primary-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-teal-500/30 group-hover:scale-110 transition-transform duration-300">
-                    <UploadCloud className="w-10 h-10 text-white" />
+                  <div className="w-24 h-24 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-2xl shadow-teal-500/30">
+                    <UploadCloud className="w-12 h-12 text-white" />
                   </div>
-                  <h2 className="text-2xl font-black text-white mb-3">Order with Prescription</h2>
-                  <p className="text-blue-100/70 mb-8 font-medium">Upload your doctor's prescription and we will arrange your medicines instantly.</p>
+                  <h2 className="text-3xl font-black text-white mb-4 tracking-tight">Prescription Portal</h2>
+                  <p className="text-gray-400 mb-10 font-medium leading-relaxed">Instantly upload and let our AI verify your medicine list.</p>
                   
-                  <div className="w-full border-2 border-dashed border-white/30 rounded-2xl p-6 hover:border-teal-400 transition-colors bg-black/20">
-                    <button className="bg-white text-gray-900 hover:bg-gray-50 px-8 py-3 rounded-xl font-bold shadow-md transition-colors w-full flex items-center justify-center">
-                      <ArrowRight className="w-5 h-5 mr-2" /> Upload File
+                  <div className="w-full bg-black/40 rounded-[2.5rem] p-8 border-2 border-dashed border-white/10 hover:border-teal-500 transition-all group-hover:bg-black/60">
+                    <button className="bg-white text-gray-900 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl w-full flex items-center justify-center group/btn">
+                      Upload File <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
-                    <p className="text-xs text-gray-400 mt-4">JPG, PNG, PDF (Max 5MB)</p>
+                    <p className="text-[10px] font-black text-gray-500 mt-6 uppercase tracking-widest">Supports PDF, JPG & Mobile Scans</p>
                   </div>
                 </div>
               </div>
@@ -139,121 +147,114 @@ const Pharmacy = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20 pb-20">
         
         {/* Trust Badges */}
-        <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-xl border border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 mb-16">
-          <div className="flex items-center space-x-4">
-            <div className="bg-orange-50 p-4 rounded-2xl"><Truck className="w-8 h-8 text-orange-500"/></div>
-            <div>
-              <h3 className="font-black text-gray-900 text-lg">2-Hour Delivery</h3>
-              <p className="text-sm text-gray-500 font-medium">Fast local delivery available</p>
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
+          {[
+            { icon: Truck, title: "2hr Delivery", desc: "Across 25+ major cities", color: "orange" },
+            { icon: ShieldCheck, title: "100% Genuine", desc: "Direct from manufacturers", color: "emerald" },
+            { icon: Zap, title: "Price Lock", desc: "Best prices guaranteed", color: "blue" }
+          ].map((badge, i) => (
+            <div key={i} className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-gray-100 flex items-center space-x-6 group">
+               <div className={`w-16 h-16 bg-${badge.color}-50 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                  <badge.icon className={`w-8 h-8 text-${badge.color}-500`} />
+               </div>
+               <div>
+                  <h3 className="font-black text-gray-900 text-lg tracking-tight">{badge.title}</h3>
+                  <p className="text-xs font-black text-gray-400 uppercase tracking-widest mt-1">{badge.desc}</p>
+               </div>
             </div>
-          </div>
-          <div className="w-px h-12 bg-gray-100 hidden md:block"></div>
-          <div className="flex items-center space-x-4">
-            <div className="bg-green-50 p-4 rounded-2xl"><ShieldCheck className="w-8 h-8 text-green-500"/></div>
-            <div>
-              <h3 className="font-black text-gray-900 text-lg">100% Genuine</h3>
-              <p className="text-sm text-gray-500 font-medium">Sourced from verified vendors</p>
-            </div>
-          </div>
-          <div className="w-px h-12 bg-gray-100 hidden md:block"></div>
-          <div className="flex items-center space-x-4">
-            <div className="bg-purple-50 p-4 rounded-2xl"><Percent className="w-8 h-8 text-purple-500"/></div>
-            <div>
-              <h3 className="font-black text-gray-900 text-lg">Best Prices</h3>
-              <p className="text-sm text-gray-500 font-medium">Up to 20% off with Prime</p>
-            </div>
-          </div>
+          ))}
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10 mb-16">
+        <div className="flex flex-col lg:flex-row gap-12">
           
-          {/* Main Content Area */}
+          {/* Main Store */}
           <div className="lg:w-2/3">
             
-            {/* Categories */}
-            <div className="mb-12">
-              <div className="flex justify-between items-end mb-6">
-                <h2 className="text-2xl font-black text-gray-900">Shop by Category</h2>
-                <button className="text-primary-600 font-bold hover:underline text-sm">View All</button>
+            {/* Categories Hub */}
+            <div className="mb-20">
+              <div className="flex justify-between items-center mb-10">
+                <h2 className="text-3xl font-black text-gray-900 tracking-tight">Browse Wellness</h2>
+                <button className="text-teal-600 font-black text-[10px] uppercase tracking-widest hover:underline flex items-center">
+                  View Catalog <ChevronRight className="w-4 h-4 ml-1" />
+                </button>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                 {categories.map((cat, idx) => (
                   <motion.div 
-                    whileHover={{ y: -4, scale: 1.02 }}
+                    whileHover={{ y: -8 }}
                     key={idx} 
-                    className="bg-white rounded-2xl p-4 flex items-center space-x-4 shadow-sm border border-gray-100 hover:shadow-md cursor-pointer transition-all"
+                    className="bg-white rounded-[2.5rem] p-6 flex flex-col items-center shadow-sm border border-gray-100 hover:shadow-2xl hover:border-teal-100 cursor-pointer transition-all text-center"
                   >
-                    <div className={`w-12 h-12 ${cat.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                      <cat.icon className={`w-6 h-6 ${cat.color}`} />
+                    <div className={`w-16 h-16 ${cat.bg} rounded-2xl flex items-center justify-center mb-6`}>
+                      <cat.icon className={`w-8 h-8 text-${cat.color}-600`} />
                     </div>
-                    <span className="font-bold text-gray-800 text-sm">{cat.name}</span>
+                    <span className="font-black text-gray-900 text-sm tracking-tight">{cat.name}</span>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Trending Products */}
-            <div>
-              <div className="flex justify-between items-end mb-6">
-                <h2 className="text-2xl font-black text-gray-900 flex items-center">
-                  Trending Now <span className="ml-3 bg-rose-100 text-rose-600 px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-wide">Hot</span>
+            {/* Product Shelf */}
+            <div className="mb-20">
+              <div className="flex justify-between items-center mb-10">
+                <h2 className="text-3xl font-black text-gray-900 tracking-tight flex items-center">
+                  Trending Health <span className="ml-4 bg-rose-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest animate-pulse">Top Picks</span>
                 </h2>
               </div>
               
-              <div className="grid sm:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-8">
                 {popularMedicines.map((med) => {
                   const qty = getQuantity(med.id);
                   const discount = Math.round(((med.oldPrice - med.price) / med.oldPrice) * 100);
                   
                   return (
                     <motion.div 
-                      whileHover={{ y: -4 }}
+                      whileHover={{ y: -10 }}
                       key={med.id} 
-                      className="bg-white rounded-[2rem] p-4 shadow-sm border border-gray-100 hover:shadow-xl transition-all group relative"
+                      className="bg-white rounded-[3rem] p-6 shadow-xl border border-gray-100 hover:shadow-2xl transition-all group relative overflow-hidden"
                     >
-                      {/* Discount Badge */}
-                      <div className="absolute top-4 left-4 z-10 bg-rose-500 text-white text-xs font-black px-2 py-1 rounded-lg shadow-md">
-                        {discount}% OFF
+                      <div className="absolute top-6 left-6 z-10 bg-rose-600 text-white text-[10px] font-black px-3 py-1.5 rounded-xl shadow-lg">
+                        -{discount}%
                       </div>
                       
-                      <div className="bg-gray-50 rounded-[1.5rem] h-48 mb-4 relative overflow-hidden flex items-center justify-center p-4">
-                        <img src={med.image} alt={med.name} className="object-contain h-full mix-blend-multiply group-hover:scale-110 transition-transform duration-500" />
+                      <div className="bg-gray-50 rounded-[2rem] h-56 mb-6 relative overflow-hidden flex items-center justify-center p-6 group-hover:bg-white transition-colors">
+                        <img src={med.image} alt={med.name} className="object-contain h-full mix-blend-multiply group-hover:scale-110 transition-transform duration-700" />
                       </div>
                       
                       <div className="px-2">
-                        <div className="flex justify-between items-start mb-1">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">{med.brand}</p>
-                          <div className="flex items-center bg-amber-50 px-2 py-0.5 rounded-md">
-                            <Star className="w-3 h-3 text-amber-500 fill-current mr-1" />
-                            <span className="text-xs font-bold text-amber-700">{med.rating}</span>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{med.brand}</span>
+                          <div className="flex items-center bg-amber-50 px-3 py-1 rounded-xl">
+                            <Star className="w-3.5 h-3.5 text-amber-500 fill-current mr-1.5" />
+                            <span className="text-xs font-black text-amber-700">{med.rating}</span>
                           </div>
                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 leading-tight mb-1">{med.name}</h3>
-                        <p className="text-sm text-gray-500 font-medium mb-4">{med.type}</p>
+                        <h3 className="text-2xl font-black text-gray-900 tracking-tight mb-2 leading-tight">{med.name}</h3>
+                        <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-8">{med.type}</p>
                         
-                        <div className="flex items-center justify-between mt-auto">
+                        <div className="flex items-center justify-between pt-6 border-t border-gray-50">
                           <div>
-                            <span className="text-2xl font-black text-gray-900">₹{med.price}</span>
-                            <span className="text-sm text-gray-400 line-through ml-2 font-medium">₹{med.oldPrice}</span>
+                            <span className="text-3xl font-black text-gray-900 tracking-tighter">₹{med.price}</span>
+                            <span className="text-sm text-gray-300 line-through ml-3 font-black">₹{med.oldPrice}</span>
                           </div>
                           
                           {qty === 0 ? (
                             <button 
                               onClick={() => handleAddToCart(med.id)}
-                              className="bg-primary-50 text-primary-700 hover:bg-primary-600 hover:text-white px-4 py-2 rounded-xl font-bold transition-colors flex items-center"
+                              className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-teal-600 transition-all shadow-xl"
                             >
-                              Add <Plus className="w-4 h-4 ml-1" />
+                              Add To Cart
                             </button>
                           ) : (
-                            <div className="flex items-center bg-primary-600 text-white rounded-xl shadow-md">
-                              <button onClick={() => updateQuantity(med.id, -1)} className="p-2 hover:bg-primary-700 rounded-l-xl transition-colors">
+                            <div className="flex items-center bg-teal-600 text-white rounded-2xl shadow-xl p-1">
+                              <button onClick={() => updateQuantity(med.id, -1)} className="p-3 hover:bg-teal-700 rounded-xl transition-colors">
                                 <Minus className="w-4 h-4" />
                               </button>
-                              <span className="font-bold px-3 min-w-[2rem] text-center">{qty}</span>
-                              <button onClick={() => updateQuantity(med.id, 1)} className="p-2 hover:bg-primary-700 rounded-r-xl transition-colors">
+                              <span className="font-black px-4 text-sm min-w-[2.5rem] text-center">{qty}</span>
+                              <button onClick={() => updateQuantity(med.id, 1)} className="p-3 hover:bg-teal-700 rounded-xl transition-colors">
                                 <Plus className="w-4 h-4" />
                               </button>
                             </div>
@@ -268,86 +269,64 @@ const Pharmacy = () => {
 
           </div>
 
-          {/* Right Sidebar */}
-          <div className="lg:w-1/3 space-y-8">
+          {/* Logistics Panel */}
+          <div className="lg:w-1/3 space-y-10">
             
-            {/* Live Order Tracking Widget */}
-            <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-xl border border-gray-100 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full mix-blend-multiply filter blur-2xl -mt-10 -mr-10"></div>
+            {/* Live Tracking Hub */}
+            <div className="bg-white rounded-[3.5rem] p-10 shadow-2xl border border-gray-100 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
               
-              <div className="flex justify-between items-center mb-6 relative z-10">
-                <h2 className="text-xl font-black text-gray-900 flex items-center">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></div>
-                  Live Tracking
+              <div className="flex justify-between items-center mb-10 relative z-10">
+                <h2 className="text-2xl font-black text-gray-900 tracking-tight flex items-center">
+                  <div className="w-3 h-3 bg-emerald-500 rounded-full mr-3 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                  Live Delivery
                 </h2>
-                <span className="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded-md">#MED-84920</span>
+                <span className="text-[10px] font-black text-gray-400 bg-gray-100 px-3 py-1.5 rounded-xl uppercase tracking-widest">MS-92840</span>
               </div>
               
               <div className="relative z-10">
-                <div className="flex justify-between items-end mb-8">
+                <div className="flex justify-between items-center mb-12">
                   <div>
-                    <p className="text-sm font-medium text-gray-500">Estimated Arrival</p>
-                    <p className="text-2xl font-black text-emerald-600">Today, 4:00 PM</p>
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">ETA Arrival</p>
+                    <p className="text-3xl font-black text-emerald-600 tracking-tighter">Today, 4:00 PM</p>
                   </div>
-                  <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center">
-                    <Truck className="w-6 h-6 text-emerald-600" />
+                  <div className="w-16 h-16 bg-emerald-50 rounded-[1.5rem] flex items-center justify-center shadow-lg shadow-emerald-500/5">
+                    <Truck className="w-8 h-8 text-emerald-600" />
                   </div>
                 </div>
 
-                {/* Animated Vertical Timeline */}
-                <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
-                  
-                  {/* Step 1 */}
-                  <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 text-white font-bold text-sm z-10">
-                      ✓
-                    </div>
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl border border-gray-100 shadow-sm bg-white ml-4 md:ml-0 md:group-odd:mr-4 md:group-even:ml-4">
-                      <div className="flex items-center justify-between mb-1">
-                        <h4 className="font-bold text-gray-900 text-sm">Order Placed</h4>
-                        <span className="text-xs text-gray-500">10:30 AM</span>
+                {/* Tactical Vertical Timeline */}
+                <div className="space-y-12 relative before:absolute before:inset-0 before:ml-6 before:h-full before:w-1 before:bg-gray-100">
+                  {[
+                    { title: "Order Verified", time: "10:30 AM", status: "complete" },
+                    { title: "Packaging Complete", time: "12:15 PM", status: "complete" },
+                    { title: "Out for Delivery", time: "On Way", status: "active", desc: "Rajesh (OTP: 5821)" }
+                  ].map((step, i) => (
+                    <div key={i} className="relative flex items-start group">
+                      <div className={`flex items-center justify-center w-12 h-12 rounded-2xl border-4 border-white shadow-xl shrink-0 z-10 transition-all ${step.status === 'complete' ? 'bg-emerald-500 text-white' : 'bg-emerald-50 text-emerald-500 animate-pulse'}`}>
+                        {step.status === 'complete' ? <CheckCircle2 className="w-6 h-6" /> : <Droplets className="w-6 h-6" />}
+                      </div>
+                      <div className={`ml-6 p-6 rounded-[2rem] border transition-all flex-1 ${step.status === 'active' ? 'bg-emerald-500 border-emerald-500 text-white shadow-2xl shadow-emerald-600/20' : 'bg-white border-gray-100 text-gray-900'}`}>
+                        <div className="flex justify-between items-center mb-2">
+                           <h4 className="font-black text-xs uppercase tracking-widest">{step.title}</h4>
+                           <span className={`text-[10px] font-black ${step.status === 'active' ? 'text-emerald-100' : 'text-gray-400'}`}>{step.time}</span>
+                        </div>
+                        {step.desc && <p className="text-[10px] font-black uppercase tracking-widest opacity-80 mt-2">{step.desc}</p>}
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Step 2 */}
-                  <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 text-white font-bold text-sm z-10">
-                      ✓
-                    </div>
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl border border-gray-100 shadow-sm bg-white ml-4 md:ml-0 md:group-odd:mr-4 md:group-even:ml-4">
-                      <div className="flex items-center justify-between mb-1">
-                        <h4 className="font-bold text-gray-900 text-sm">Packed</h4>
-                        <span className="text-xs text-gray-500">12:15 PM</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Step 3 (Current) */}
-                  <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-emerald-200 bg-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 animate-pulse">
-                      <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
-                    </div>
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl border-2 border-emerald-500 shadow-md bg-emerald-50/50 ml-4 md:ml-0 md:group-odd:mr-4 md:group-even:ml-4">
-                      <div className="flex items-center justify-between mb-1">
-                        <h4 className="font-bold text-emerald-700 text-sm">Out for Delivery</h4>
-                      </div>
-                      <p className="text-xs text-emerald-600 font-medium">Driver: Rajesh (OTP: 5821)</p>
-                    </div>
-                  </div>
-
+                  ))}
                 </div>
               </div>
             </div>
 
-            {/* Promo Banner */}
-            <div className="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-[2rem] p-8 shadow-xl text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full mix-blend-overlay filter blur-3xl"></div>
-              <Star className="w-10 h-10 text-amber-400 mb-4 fill-current" />
-              <h3 className="text-2xl font-black mb-2">MediSaathi Prime</h3>
-              <p className="text-indigo-200 mb-6 font-medium">Get flat 20% off on all medicine orders and free express delivery.</p>
-              <button className="w-full bg-white text-indigo-900 hover:bg-gray-50 py-3 rounded-xl font-bold transition-colors shadow-lg">
-                Join Now for ₹499/mo
+            {/* Prime Banner */}
+            <div className="bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 rounded-[3.5rem] p-12 shadow-2xl text-white relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl -mr-24 -mt-24 group-hover:scale-125 transition-transform duration-700"></div>
+              <Crown className="w-16 h-16 text-amber-400 mb-8 drop-shadow-2xl" />
+              <h3 className="text-4xl font-black mb-4 tracking-tight">MediSaathi Prime</h3>
+              <p className="text-indigo-100 text-lg mb-10 font-medium leading-relaxed">Save up to 20% on all orders. Priority 1-hour express delivery included.</p>
+              <button className="w-full bg-white text-indigo-900 hover:bg-gray-100 py-6 rounded-[2rem] font-black text-[10px] uppercase tracking-widest transition-all shadow-2xl flex items-center justify-center">
+                Join Revolution <ChevronRight className="w-4 h-4 ml-2" />
               </button>
             </div>
 

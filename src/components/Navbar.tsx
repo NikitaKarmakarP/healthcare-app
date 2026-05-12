@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { HeartPulse, Menu, X, Phone, User, Settings, LogOut, ChevronDown, LayoutDashboard, Stethoscope, Building2, Pill, Sparkles, Baby, ShieldCheck, Droplet } from 'lucide-react';
+import { HeartPulse, Menu, X, Phone, User, Settings, LogOut, ChevronDown, LayoutDashboard, Stethoscope, Building2, Pill, Sparkles, Baby, ShieldCheck, Droplet, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoginModal from './LoginModal';
 
@@ -11,6 +12,17 @@ const Navbar = () => {
   const [user, setUser] = useState<{name: string, avatar: string} | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
+    { code: 'bn', name: 'বাংলা', flag: '🇮🇳' },
+  ];
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,15 +47,15 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+    { name: t('nav.dashboard'), path: '/dashboard', icon: LayoutDashboard },
     { 
-      name: 'Healthcare', 
+      name: t('nav.healthcare', 'Healthcare'), 
       path: '#',
       subLinks: [
-        { name: 'Find Doctors', path: '/doctors', desc: 'Book expert consultations', icon: Stethoscope, color: 'text-blue-500', bg: 'bg-blue-50' },
-        { name: 'Hospitals', path: '/hospitals', desc: 'Find nearby medical centers', icon: Building2, color: 'text-emerald-500', bg: 'bg-emerald-50' },
-        { name: 'Pharmacy', path: '/pharmacy', desc: 'Order medicines online', icon: Pill, color: 'text-purple-500', bg: 'bg-purple-50' },
-        { name: 'Blood Bank', path: '/blood-bank', desc: 'Find and donate blood', icon: Droplet, color: 'text-red-500', bg: 'bg-red-50' },
+        { name: t('nav.doctors'), path: '/doctors', desc: 'Book expert consultations', icon: Stethoscope, color: 'text-blue-500', bg: 'bg-blue-50' },
+        { name: t('nav.hospitals'), path: '/hospitals', desc: 'Find nearby medical centers', icon: Building2, color: 'text-emerald-500', bg: 'bg-emerald-50' },
+        { name: t('nav.pharmacy'), path: '/pharmacy', desc: 'Order medicines online', icon: Pill, color: 'text-purple-500', bg: 'bg-purple-50' },
+        { name: t('nav.bloodBank'), path: '/blood-bank', desc: 'Find and donate blood', icon: Droplet, color: 'text-red-500', bg: 'bg-red-50' },
       ]
     },
     { 
@@ -126,8 +138,30 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-4">
               <Link to="/emergency" className="flex items-center space-x-2 text-red-600 font-bold hover:bg-red-50 px-5 py-2.5 rounded-full transition-colors border border-red-200 shadow-sm shadow-red-100 group">
                 <Phone className="h-4 w-4 group-hover:animate-bounce" />
-                <span>SOS</span>
+                <span>{t('nav.emergency')}</span>
               </Link>
+
+              {/* Language Switcher */}
+              <div className="relative group">
+                <button className="flex items-center space-x-2 px-4 py-2.5 text-gray-600 hover:text-gray-900 font-bold rounded-full hover:bg-gray-50 transition-all">
+                  <Globe className="w-4 h-4" />
+                  <span className="uppercase text-sm">{i18n.language.split('-')[0]}</span>
+                </button>
+                <div className="absolute right-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="w-40 bg-white rounded-2xl shadow-[0_20px_40px_rgb(0,0,0,0.1)] border border-gray-100 overflow-hidden p-2">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => changeLanguage(lang.code)}
+                        className={`w-full flex items-center px-4 py-2.5 text-sm font-bold rounded-xl transition-colors ${i18n.language === lang.code ? 'bg-primary-50 text-primary-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                      >
+                        <span className="mr-3">{lang.flag}</span>
+                        {lang.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
               
               {isLoggedIn && user ? (
                 <div className="relative group">

@@ -13,12 +13,15 @@ import {
   ShieldCheck,
   Activity,
   ArrowRight,
-  Heart
+  Heart,
+  Sparkles
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const features = [
     { icon: <Search className="w-6 h-6" />, title: "Find Doctors", desc: "Top specialists near you", color: "bg-blue-100 text-blue-600", path: "/doctors" },
@@ -61,15 +64,12 @@ const Home = () => {
                 India's #1 AI Healthcare Platform
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-black text-gray-900 leading-[1.1] tracking-tight">
-                Your Health, <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-                  Powered by AI
-                </span>
+              <h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-text-shimmer leading-[1.1] tracking-tight">
+                {t('hero.title')}
               </h1>
               
               <p className="text-lg lg:text-xl text-gray-600 max-w-xl leading-relaxed font-medium">
-                Connect with top doctors, get AI-driven health insights, order medicines, and access emergency services—all in one intelligent ecosystem.
+                {t('hero.subtitle')}
               </p>
 
               {/* Enhanced Search Bar */}
@@ -244,56 +244,107 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Grid (Enterprise Professional Layout) */}
-      <section className="relative py-24 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 flex flex-col md:flex-row md:justify-between md:items-end border-b border-gray-100 pb-8 space-y-6 md:space-y-0">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-bold text-xs uppercase tracking-widest mb-4 shadow-sm">
-                <span className="flex h-2 w-2 rounded-full bg-blue-600 mr-2 animate-pulse"></span>
-                Platform Capabilities
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
-                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Ecosystem</span>
-              </h2>
-              <p className="text-lg md:text-xl text-gray-500 font-medium leading-relaxed">Enterprise-grade tools beautifully integrated to manage every aspect of healthcare delivery.</p>
-            </div>
-            <button 
-              onClick={() => navigate('/services')}
-              className="inline-flex items-center bg-gray-900 hover:bg-blue-600 text-white px-6 py-3.5 rounded-xl font-bold transition-all shadow-md hover:shadow-blue-500/30 group transform hover:-translate-y-1"
-            >
-              Explore all capabilities 
-              <ChevronRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, idx) => (
+      {/* Services Grid (Premium High-Fidelity Ecosystem) */}
+      <section className="relative py-32 bg-white overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="max-w-3xl">
               <motion.div 
-                key={idx}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-black text-[10px] uppercase tracking-[0.2em] mb-6 shadow-sm"
+              >
+                <Sparkles className="w-3.5 h-3.5 mr-2 animate-pulse" />
+                Integrated Ecosystem
+              </motion.div>
+              <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                onClick={() => navigate(feature.path)}
-                className="group relative p-8 rounded-2xl bg-white border border-gray-200 hover:border-blue-600 shadow-sm hover:shadow-[0_8px_30px_rgba(37,99,235,0.12)] transition-all duration-300 cursor-pointer flex flex-col"
+                className="text-5xl md:text-7xl font-black text-gray-900 mb-6 tracking-tight leading-[0.95]"
               >
-                <div className="flex justify-between items-start mb-8">
-                  <div className="w-14 h-14 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-700 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
-                    {React.cloneElement(feature.icon as React.ReactElement, { className: "w-7 h-7" })}
+                Comprehensive <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+                  Health Solutions
+                </span>
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-xl text-gray-500 font-medium leading-relaxed max-w-2xl"
+              >
+                Enterprise-grade medical tools beautifully integrated to manage every aspect of your healthcare journey with precision.
+              </motion.p>
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <button 
+                onClick={() => navigate('/services')}
+                className="group relative bg-gray-900 hover:bg-blue-600 text-white px-10 py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest transition-all shadow-2xl hover:shadow-blue-500/30 flex items-center overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                <span className="relative z-10 flex items-center">
+                  Full Capabilities <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </button>
+            </motion.div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {features.map((feature, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                onClick={() => navigate(feature.path)}
+                className="group relative p-10 rounded-[3rem] bg-white border border-gray-100 hover:border-blue-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_rgba(37,99,235,0.15)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden"
+              >
+                {/* Background Accent */}
+                <div className={`absolute -bottom-10 -right-10 w-40 h-40 rounded-full blur-[60px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 ${feature.color.replace('bg-', 'bg-')}`}></div>
+                
+                <div className="flex justify-between items-start mb-12 relative z-10">
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-6 shadow-lg ${feature.color} group-hover:shadow-xl`}>
+                    {React.cloneElement(feature.icon as React.ReactElement, { className: "w-8 h-8" })}
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-blue-100 group-hover:border-blue-200 group-hover:text-blue-600 transition-all duration-300 transform group-hover:-rotate-45">
-                    <ChevronRight className="w-4 h-4" />
+                  <div className="w-10 h-10 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-500">
+                    <ArrowRight className="w-4 h-4 transform -rotate-45 group-hover:rotate-0 transition-transform" />
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight group-hover:text-blue-600 transition-colors">{feature.title}</h3>
-                <p className="text-gray-500 font-medium leading-relaxed">{feature.desc}</p>
-                
-                {/* Minimalist animated bottom border line */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-transparent overflow-hidden rounded-b-2xl">
-                  <div className="w-full h-full bg-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></div>
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-black text-gray-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-500 font-bold text-sm leading-relaxed mb-8 opacity-80 group-hover:opacity-100 transition-opacity">
+                    {feature.desc}
+                  </p>
                 </div>
+
+                <div className="mt-auto pt-6 border-t border-gray-50 flex items-center justify-between relative z-10">
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-blue-600 transition-colors">Launch Module</span>
+                  <div className="flex space-x-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover:bg-blue-400 transition-colors"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover:bg-blue-400 transition-colors delay-75"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover:bg-blue-400 transition-colors delay-150"></div>
+                  </div>
+                </div>
+
+                {/* Tactical Corner Border */}
+                <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-transparent group-hover:border-blue-500/20 rounded-tr-[3rem] transition-all duration-500"></div>
               </motion.div>
             ))}
           </div>
